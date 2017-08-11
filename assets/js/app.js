@@ -16,6 +16,7 @@ $(function() {
                     //if (e.keyCode === 27) app.goIndex();
                 });
                 $(window).load(function() {
+                    app.loadSlider();
                     $(".loader").fadeOut("fast");
                 });
             });
@@ -32,15 +33,17 @@ $(function() {
             }
         },
         loadSlider: function() {
-            $slider = $('.slider').flickity({
-                cellSelector: '.slide',
+            $slider = $('.sections-slider').flickity({
+                cellSelector: 'section.blog-section',
                 imagesLoaded: true,
                 setGallerySize: false,
+                percentPosition: false,
                 accessibility: true,
+                cellAlign: 'left',
                 wrapAround: true,
-                prevNextButtons: true,
+                prevNextButtons: false,
                 pageDots: false,
-                draggable: isMobile,
+                draggable: false,
                 dragThreshold: 40
             });
             $slider.flkty = $slider.data('flickity');

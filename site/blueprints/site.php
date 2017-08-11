@@ -29,3 +29,15 @@ fields:
     type: image
     help: 1200x630px minimum
     width: 1/2
+  socials:
+    label: Social Links
+    type: structure
+    style: table
+    fields:
+      name:
+        label: Name
+        type: text
+        icon: font
+      link:
+        label: Link
+        type: url

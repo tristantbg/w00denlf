@@ -29,18 +29,27 @@ of the system, please check out http://getkirby.com/docs/advanced/options
 
 */
 
+// Thumb presets
+
+c::set('thumbs.presets', [
+  'category' => ['width' => 2000, 'quality' => 90],
+]);
+
+// Main
+
+c::set('home', 'blog');
 c::set('debug', true);
 c::set('plugin.embed.video.lazyload', true);
 c::set('plugin.embed.video.lazyload.btn', 'assets/images/play.png');
 c::set('kirbytext.image.figure', false);
 //Typo
-c::set('typography', false);
+c::set('typography', true);
 c::set('typography.ordinal.suffix', false);
 c::set('typography.fractions', false);
 c::set('typography.dashes.spacing', false);
 c::set('typography.hyphenation', true);
-//c::set('typography.hyphenation.language', 'fr');
-//c::set('typography.hyphenation.minlength', 5);
+c::set('typography.hyphenation.language', 'fr');
+c::set('typography.hyphenation.minlength', 5);
 c::set('typography.hyphenation.headings', false);
 c::set('typography.hyphenation.allcaps', false);
 c::set('typography.hyphenation.titlecase', false);

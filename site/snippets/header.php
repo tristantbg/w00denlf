@@ -5,6 +5,7 @@
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="dns-prefetch" href="//www.google-analytics.com">
+	<link rel="alternate" type="application/rss+xml" href="<?php echo url('feed') ?>" title="<?= $site->title()->html() ?> Feed" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<link rel="canonical" href="<?php echo html($page->url()) ?>" />
 	<?php if($page->isHomepage()): ?>
@@ -82,5 +83,41 @@
 		</svg>
 	</div>
 </div>
+
+<header>
+	<div id="site-title">
+		<a href="<?= $site->url() ?>" data-target="menu"><?= $site->title()->html() ?></a>
+	</div>
+	<ul id="switch" class="inline-nav">
+		<li class="active" data-switch="category">
+			Catégorie
+		</li>
+		<li data-switch="type">
+			Type
+		</li>
+	</ul>
+	<ul class="navigation nav-category active">
+		<?php foreach ($categories as $category): ?>
+			<li><a href="<?= $category->url() ?>"><?= $category->title()->html() ?></a></li>
+		<?php endforeach ?>
+	</ul>
+	<ul class="navigation nav-type">
+		<?php foreach ($types as $type): ?>
+			<li><a href="<?= $type->url() ?>"><?= $type->title()->html() ?></a></li>
+		<?php endforeach ?>
+	</ul>
+	<ul id="socials" class="inline-nav">
+		<?php foreach($site->socials()->yaml() as $social): ?>
+			<li>
+    			<a href="<?php echo $social['link'] ?>" target="_blank"><?php echo $social['name'] ?></a>
+    		</li>
+    	<?php endforeach ?>
+	</ul>
+	<ul id="nav-pages" class="inline-nav">
+		<?php foreach ($menuPages as $p): ?>
+			<li><a href="<?= $p->url() ?>"><?= $p->title()->html() ?></a></li>
+		<?php endforeach ?>
+	</ul>
+</header>
 
 <div id="container">

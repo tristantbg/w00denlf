@@ -1,0 +1,39 @@
+#blog-categories
+	height 100vh
+	padding-left $padding
+	.flickity-viewport
+		overflow initial !important
+		position fixed
+		height 100%
+		width 100%
+		top 0
+		left $padding
+
+section.blog-section
+	span(1/2.4)
+	height 100%
+	overflow scroll
+
+.blog-category--image
+	width 100%
+	height 100vh
+	background-size cover
+	background-position center
+	margin-bottom ($font_header*2)
+
+.blog-posts
+	padding 0 $padding $padding
+
+.blog-item
+	span(1)
+	margin-bottom ($font_header*2)
+
+.item-header, .item-chapeau
+	span(1)
+
+.blog-item--type, .blog-item--date
+	column(1/2)
+	margin 1em 0
+
+.item-chapeau
+	margin-bottom 1em
