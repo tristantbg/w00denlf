@@ -67,6 +67,9 @@
 	<?php endif ?>
 
 </head>
+
+<?php $ptemplate = $page->intendedTemplate() ?>
+
 <body>
 
 <div id="outdated">
@@ -85,39 +88,64 @@
 </div>
 
 <header>
-	<div id="site-title">
-		<a href="<?= $site->url() ?>" data-target="menu"><?= $site->title()->html() ?></a>
+	<div id="current-title" data-target="menu">
+		<div id="site-title">
+			<a href="<?= $site->url() ?>"><?= $site->title()->html() ?></a>
+		</div>
+		<div id="section-title" class="hidden"></div>
+		<div id="menu-arrow">
+			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+				 viewBox="0 0 72.3 40.3" enable-background="new 0 0 72.3 40.3" xml:space="preserve">
+			<g id="a-left">
+				<rect x="-5.8" y="18.1" transform="matrix(0.7063 0.7079 -0.7079 0.7063 20.0134 -7.9577)" width="50.8" height="4"/>
+			</g>			
+			<g id="a-right">
+				<rect x="50.7" y="-5.3" transform="matrix(0.7081 0.7061 -0.7061 0.7081 29.6006 -31.3242)" width="4" height="50.8"/>
+			</g>			
+			</svg>
+		</div>
 	</div>
-	<ul id="switch" class="inline-nav">
-		<li class="active" data-switch="category">
-			Catégorie
-		</li>
-		<li data-switch="type">
-			Type
-		</li>
-	</ul>
-	<ul class="navigation nav-category active">
-		<?php foreach ($categories as $category): ?>
-			<li><a href="<?= $category->url() ?>"><?= $category->title()->html() ?></a></li>
-		<?php endforeach ?>
-	</ul>
-	<ul class="navigation nav-type">
-		<?php foreach ($types as $type): ?>
-			<li><a href="<?= $type->url() ?>"><?= $type->title()->html() ?></a></li>
-		<?php endforeach ?>
-	</ul>
-	<ul id="socials" class="inline-nav">
-		<?php foreach($site->socials()->yaml() as $social): ?>
-			<li>
-    			<a href="<?php echo $social['link'] ?>" target="_blank"><?php echo $social['name'] ?></a>
-    		</li>
-    	<?php endforeach ?>
-	</ul>
-	<ul id="nav-pages" class="inline-nav">
-		<?php foreach ($menuPages as $p): ?>
-			<li><a href="<?= $p->url() ?>"><?= $p->title()->html() ?></a></li>
-		<?php endforeach ?>
-	</ul>
+	<div id="menu-background"></div>
+	<div id="menu">
+		<ul id="switch" class="inline-nav">
+			<li<? e($ptemplate == 'blog', ' class="active"') ?> data-switch="category">
+				Catégorie
+			</li>
+			<li<? e($ptemplate == 'types', ' class="active"') ?> data-switch="type">
+				Type
+			</li>
+		</ul>
+		<ul class="navigation nav-category<? e($ptemplate == 'blog', ' active') ?>">
+			<?php foreach ($categories as $category): ?>
+				<li>
+					<a href="<?= $category->url() ?>" <? e($ptemplate == 'blog', 'data-category="'.$category->uid().'"') ?>>
+						<?= $category->title()->html() ?>
+					</a>
+				</li>
+			<?php endforeach ?>
+		</ul>
+		<ul class="navigation nav-type<? e($ptemplate == 'types', ' active') ?>">
+			<?php foreach ($types as $type): ?>
+				<li>
+					<a href="<?= $type->url() ?>" <? e($ptemplate == 'types', 'data-category="'.$type->uid().'"') ?>>
+						<?= $type->title()->html() ?>
+					</a>
+				</li>
+			<?php endforeach ?>
+		</ul>
+		<ul id="socials" class="inline-nav">
+			<?php foreach($site->socials()->yaml() as $social): ?>
+				<li>
+		    			<a href="<?php echo $social['link'] ?>" target="_blank"><?php echo $social['name'] ?></a>
+		    		</li>
+		    	<?php endforeach ?>
+		</ul>
+		<ul id="nav-pages" class="inline-nav">
+			<?php foreach ($menuPages as $p): ?>
+				<li><a href="<?= $p->url() ?>"><?= $p->title()->html() ?></a></li>
+			<?php endforeach ?>
+		</ul>
+	</div>
 </header>
 
 <div id="container">

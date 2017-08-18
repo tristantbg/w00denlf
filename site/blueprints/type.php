@@ -17,6 +17,10 @@ fields:
     label: Featured image
     type: image
     width: 1/4
+  featuredcolor:
+    label: Featured color
+    type: color
+    width: 1/4
   text:
     label: Description
     type: textarea

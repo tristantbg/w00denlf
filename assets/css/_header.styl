@@ -1,22 +1,78 @@
 header
 	span(1/2.4)
 	position fixed
-	padding $padding
+	padding ($padding/2)
 	top $padding
 	left $padding
-	z-index 100
-	height 'calc(100vh - %s)' % ($padding*2)
-	ul
-		visibility hidden
-	&.visible
+	z-index 500
+	overflow hidden
+	#current-title
+		position relative
+		font-size $font_header
+		z-index 20
+		overflow hidden
+	#menu-arrow
+		width 1em
+		height 1em
+		position absolute
+		top 0
+		right 0
+		svg
+			position absolute
+			bottom .15em
+			left 0
+			#a-left
+				transition transform 300ms ease
+		span
+			position absolute
+			top 0
+			width 66%
+			height .05em
+			background $secondary
+			&:first-child
+				left 0
+				transform rotate(45deg)
+				transform-origin top left
+			&:last-child
+				right 0
+				transform rotate(-45deg)
+				transform-origin top right
+	#section-title
+		position absolute
+		width 100%
+		top 0
+		left 0
+	#site-title, #section-title
+		transition transform 1000ms ease
+		&.hidden
+			transform translateX(-100%) translateZ(0)
+	#menu
+		position relative
+		z-index 20
+	#menu-background
+		content ''
+		span(1/2.4)
+		position fixed
+		height 'calc(100vh - %s)' % ($padding*2)
+		top $padding
+		left $padding
 		background $primary
-		ul
-			visibility visible
-
-#site-title
-	font-size $font_header
+		z-index 0
+	#menu, #menu-background
+		display none
+	&.menu-open
+		#site-title
+			transform none
+		#section-title
+			transform translateX(-100%) translateZ(0)
+		#menu, #menu-background
+			display block
+		#menu-arrow
+			svg #a-left
+				transform translateX(43%) translateZ(0)
 
 [data-target="menu"]
+	cursor pointer
 
 #switch
 	margin 1em 0
@@ -38,6 +94,8 @@ header
 .navigation
 	font-size $font_header
 	display none
+	li
+		white-space nowrap
 	&.active
 		display block
 

@@ -4,6 +4,7 @@ title: Category
 files: true
 pages:
   template: article
+  sort: date desc
 deletable: false
 fields:
   prevnext: prevnext
@@ -21,4 +22,5 @@ fields:
     options: children
     columns:
       title: Title
+      date: Date
       uid: Slug

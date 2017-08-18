@@ -4,7 +4,8 @@ return function ($site, $pages, $page) {
 	$categories = $page->children()->visible();
 	$types = $site->index()->filterBy('intendedTemplate', 'type')->visible();
 	$menuPages = $site->index()->filterBy('intendedTemplate', 'default')->visible();
-	$lastPost = $page->grandChildren()->visible()->first();
+	$postsCollection = $page->grandChildren()->visible()->sortBy('date', 'desc');
+	$lastPost = $postsCollection->first();
 	$postTypes = (object) array();
 	foreach ($types as $type) {
 		$id = $type->autoid();

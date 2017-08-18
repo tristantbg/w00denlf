@@ -32,8 +32,8 @@ of the system, please check out http://getkirby.com/docs/advanced/options
 // Thumb presets
 
 c::set('thumbs.presets', [
-  'category' => ['width' => 2000, 'quality' => 90],
-]);
+	'category' => ['height' => 2000, 'quality' => 90],
+	]);
 
 // Main
 
@@ -78,3 +78,16 @@ c::set('routes', array(
 		}
 		)
 	));
+
+kirby()->hook('panel.page.create', function($page) {
+	if ($page->intendedTemplate() == 'article') {
+		try {
+			$site = $this->site();
+			$page->update(array(
+				'type' => $site->index()->filterBy('intendedTemplate', 'type')->visible()->first()->autoid()
+				));
+		} catch(Exception $e) {
+			echo $e->getMessage();
+		}
+	} 
+});

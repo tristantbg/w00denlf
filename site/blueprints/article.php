@@ -27,40 +27,58 @@ fields:
   title:
     label: Title
     type:  text
-    width: 2/4
   date:
     label: Post date
-    type:  date
-    format: DD-MM-YYYY
-    default: today
+    type:  datetime
+    date:
+      format: DD.MM.YYYY
+    time:
+      format: 12
+      interval: 15
+    default: today now
     required: true
-    width: 1/4
-  featured:
-    label: Featured image
-    type: image
-    width: 1/4
-  text:
-    label: Chapeau
-    type: textarea
-    width: 1/2
+    width: 1/3
   type:
     label: Type
     type: radio
     options: query
+    required: true
     query:
       page: types
       fetch: visibleChildren
       value: '{{autoid}}'
       text: '{{title}}'
-    width: 1/2
+    width: 1/3
+    columns: 1
+  featured:
+    label: Featured image
+    type: image
+    width: 1/3
+  text:
+    label: Chapeau
+    type: textarea
   sections:
     label: Sections
     type: builder
     fieldsets:
       bodytext:
-        label: Body Text
+        label: Text
         snippet: sections/bodytext
         fields:
           text:
-            label: text
+            label: Text
             type: textarea
+      images:
+        label: Images
+        snippet: sections/slider
+        fields:
+          medias:
+            label: Images
+            type: images
+      embed:
+        label: Embed
+        snippet: sections/embed
+        fields:
+          url:
+            label: URL
+            type: url
