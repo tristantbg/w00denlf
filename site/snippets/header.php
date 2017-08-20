@@ -79,13 +79,7 @@
 	</div>
 </div>
 
-<div class="loader">
-	<div class="spinner">
-		<svg class="circular" viewBox="25 25 50 50">
-		<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="1" stroke-miterlimit="10"></circle>
-		</svg>
-	</div>
-</div>
+<div class="loader"></div>
 
 <header>
 	<div id="current-title" data-target="menu">
@@ -108,17 +102,17 @@
 	<div id="menu-background"></div>
 	<div id="menu">
 		<ul id="switch" class="inline-nav">
-			<li<? e($ptemplate == 'blog', ' class="active"') ?> data-switch="category">
+			<li<? e($ptemplate != 'types', ' class="active"') ?> data-switch="category">
 				Catégorie
 			</li>
 			<li<? e($ptemplate == 'types', ' class="active"') ?> data-switch="type">
 				Type
 			</li>
 		</ul>
-		<ul class="navigation nav-category<? e($ptemplate == 'blog', ' active') ?>">
+		<ul class="navigation nav-category<? e($ptemplate != 'types', ' active') ?>">
 			<?php foreach ($categories as $category): ?>
 				<li>
-					<a href="<?= $category->url() ?>" <? e($ptemplate == 'blog', 'data-category="'.$category->uid().'"') ?>>
+					<a href="<?= $category->parent()->url() . '#' . $category->uid() ?>" <? e($ptemplate == 'blog', 'data-slider="'.$category->uid().'"') ?>>
 						<?= $category->title()->html() ?>
 					</a>
 				</li>
@@ -127,12 +121,16 @@
 		<ul class="navigation nav-type<? e($ptemplate == 'types', ' active') ?>">
 			<?php foreach ($types as $type): ?>
 				<li>
-					<a href="<?= $type->url() ?>" <? e($ptemplate == 'types', 'data-category="'.$type->uid().'"') ?>>
+					<a href="<?= $type->parent()->url() . '#' . $type->uid() ?>" <? e($ptemplate == 'types', 'data-slider="'.$type->uid().'"') ?>>
 						<?= $type->title()->html() ?>
 					</a>
 				</li>
 			<?php endforeach ?>
 		</ul>
+		<form id="search" action="<?= page("search")->url() ?>">
+		  <input type="search" placeholder="Recherche" name="q" value="<?php if(isset($query)) echo esc($query) ?>">
+		  <!-- <input type="submit" value="Search"> -->
+		</form>
 		<ul id="socials" class="inline-nav">
 			<?php foreach($site->socials()->yaml() as $social): ?>
 				<li>

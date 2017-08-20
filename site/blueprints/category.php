@@ -5,6 +5,10 @@ files: true
 pages:
   template: article
   sort: date desc
+  num:
+    mode: date
+    field: date
+    format: YmdHi
 deletable: false
 fields:
   prevnext: prevnext
@@ -20,7 +24,12 @@ fields:
     label: Posts
     type: index
     options: children
+    rows: 50
     columns:
       title: Title
-      date: Date
-      uid: Slug
+      date:
+        label: Date
+        snippet: index/modified
+      uri:
+        label: Type
+        snippet: index/type

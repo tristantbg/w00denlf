@@ -1,3 +1,3 @@
-<section class="post-content--text">
-	<?php $data->text()->kt() ?>
+<section class="post-content content--text">
+	<?= $data->text()->kt() ?>
 </section>

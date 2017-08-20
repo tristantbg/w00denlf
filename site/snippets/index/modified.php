@@ -1,0 +1,1 @@
+<?php echo $entry->modified('d/m/Y H:i') ?>

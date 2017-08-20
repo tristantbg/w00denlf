@@ -5,6 +5,7 @@ var width = $(window).width(),
     target,
     $slider,
     lastTarget = false,
+    timeoutChangeTitle,
     $root = '/';
 $(function() {
     var app = {
@@ -34,6 +35,7 @@ $(function() {
                 });
                 $(window).load(function() {
                     app.loadSlider();
+                    app.loadPostsSliders();
                     $(".loader").fadeOut("fast", function() {
                         if (window.location.hash.substr(1).length < 1) {
                             setTimeout(app.getLastPost, 500);
@@ -54,7 +56,7 @@ $(function() {
             }
         },
         getLastPost: function() {
-            if ($slider) {
+            if (typeof $slider.flkty != 'undefined') {
                 $lastPostSectionIndex = $('.last-post').parents("section").index();
                 $slider.flickity('select', $lastPostSectionIndex);
             }
@@ -65,7 +67,8 @@ $(function() {
             $siteTitle.addClass('hidden');
             $sectionTitle.addClass('hidden');
             setTimeout(function() {
-                setTimeout(function() {
+                window.clearTimeout(timeoutChangeTitle);
+                timeoutChangeTitle = setTimeout(function() {
                     $sectionTitle.html(newTitle).removeClass('hidden');
                 }, delay);
             }, 800);
@@ -84,17 +87,17 @@ $(function() {
                 draggable: true,
                 dragThreshold: 40
             });
-            if ($slider) {
-                $slider.flkty = $slider.data('flickity');
+            $slider.flkty = $slider.data('flickity');
+            if (typeof $slider.flkty != 'undefined') {
                 $slider.count = $slider.flkty.slides.length;
                 $slider.on('staticClick.flickity', function(event, pointer, cellElement, cellIndex) {
                     if (typeof cellIndex == 'number') {
                         $slider.flickity('selectCell', cellIndex);
                     }
                 });
-                $body.on('click', '[data-category]', function(event) {
+                $body.on('click', '[data-slider]', function(event) {
                     event.preventDefault();
-                    $slider.flickity('selectCell', '#'+$(this).data('category'));
+                    $slider.flickity('selectCell', '#' + $(this).data('slider'));
                     $header.removeClass('visible');
                 });
                 var lastIndex;
@@ -109,7 +112,9 @@ $(function() {
                 }
                 $slider.on('select.flickity', function() {
                     slide = $($slider.flkty.selectedElement).attr('id');
-                    window.location.hash = slide;
+                    if (typeof slide != 'undefined') {
+                      window.location.hash = slide;
+                    }
                     if (lastIndex != $slider.flkty.selectedIndex) {
                         app.changeTitle($($slider.flkty.selectedElement).data("title"));
                         lastIndex = $slider.flkty.selectedIndex;
@@ -135,6 +140,23 @@ $(function() {
                 //     }
                 // });
             }
+        },
+        loadPostsSliders: function() {
+          $('.post-content.content--images').flickity({
+                cellSelector: '.cell',
+                imagesLoaded: true,
+                setGallerySize: false,
+                percentPosition: false,
+                accessibility: true,
+                // cellAlign: 'left',
+                wrapAround: false,
+                contain: true,
+                prevNextButtons: true,
+                pageDots: false,
+                draggable: false,
+                // dragThreshold: 40
+            });
+            
         },
         goIndex: function() {},
         smoothState: function(container, target) {

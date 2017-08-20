@@ -1,7 +1,7 @@
 #blog-categories
 	height 100vh
 	padding-left $padding
-	.flickity-viewport
+	> .flickity-viewport
 		overflow initial !important
 		position fixed
 		height 100%
@@ -34,7 +34,7 @@ section.blog-section
 .blog-posts
 	transition transform 0.8s ease
 	transform translateY(100vh) translateZ(0)
-	padding 0 ($padding/2) $padding
+	padding-bottom $padding
 	margin-top ($font_header*2)
 
 .blog-item
@@ -43,6 +43,7 @@ section.blog-section
 
 .item-header, .item-chapeau
 	span(1)
+	padding 0 ($padding/2)
 
 .blog-item--type, .blog-item--date
 	column(1/2)
@@ -50,3 +51,34 @@ section.blog-section
 
 .item-chapeau
 	margin-bottom 1em
+
+.item-content
+	span(1)
+	section
+		span(1)
+
+.post-content
+	margin-bottom $padding
+
+.post-content.content--text
+	padding 0 ($padding/2)
+
+.post-content.content--embed
+	padding 0 ($padding/2)
+
+.post-content.content--images
+	height 40rem
+	.flickity-viewport
+		height 40rem
+	.cell
+		height 40rem
+		img
+			display block
+	.flickity-prev-next-button .arrow
+		fill $secondary
+	.flickity-prev-next-button
+		background transparent
+	.flickity-prev-next-button.next
+		right 0
+	.flickity-prev-next-button.previous
+		left 0

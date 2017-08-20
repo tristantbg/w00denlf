@@ -1,0 +1,1 @@
+<?php echo site()->index()->filterBy('autoid', page($entry)->type())->first()->title() ?>

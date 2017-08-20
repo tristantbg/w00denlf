@@ -1,19 +1,19 @@
 <?php 
-if (!$typeMode && $post->type()->isNotEmpty()){
+if (isset($postTypes) && $post->type()->isNotEmpty()){
 	$type = $postTypes->{$post->type()};
 } else {
 	$type = null;
 }
 ?>
-<div class="blog-item<?php e($post->is($lastPost), ' last-post') ?>">
+<div class="blog-item<?php e(isset($lastPost) && $post->is($lastPost), ' last-post') ?>">
 	<div class="item-header">
 		<h2 class="blog-item--title">
-			<?= $post->title()->html() ?>
+			<a href="<?= $post->url() ?>"><?= $post->title()->html() ?></a>
 		</h2>
 		<div class="blog-item--type">
 		<?php if($type): ?>
 			<a href="<?= $type->url() ?>"><?= $type->title()->html() ?></a>
-		<?php elseif($typeMode): ?>
+		<?php elseif(isset($typeMode) && $typeMode): ?>
 			<a href="<?= $post->parent()->url() ?>"><?= $post->parent()->title()->html() ?></a>
 		<?php endif ?>
 		</div>
@@ -25,7 +25,7 @@ if (!$typeMode && $post->type()->isNotEmpty()){
 		<?= $post->text()->kt() ?>
 	</div>
 	<div class="item-content">
-		<?php foreach($page->sections()->toStructure() as $section): ?>
+		<?php foreach($post->sections()->toStructure() as $section): ?>
 		  <?php snippet('sections/' . $section->_fieldset(), array('data' => $section)) ?>
 		<?php endforeach ?>
 	</div>

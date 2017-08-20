@@ -15,7 +15,7 @@ $bot = _bot_detected();
 
 <?php if(!$bot): ?>
 <script>
-	window.location = window.location.href.replace("types/", "types/#");
+	window.location = window.location.href.replace("blog/", "/#");
 </script>
 <?php endif ?>
 

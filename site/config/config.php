@@ -33,6 +33,7 @@ of the system, please check out http://getkirby.com/docs/advanced/options
 
 c::set('thumbs.presets', [
 	'category' => ['height' => 2000, 'quality' => 90],
+	'slider' => ['width' => 1000, 'quality' => 90],
 	]);
 
 // Main
