@@ -25,9 +25,4 @@
 	</section>
 </div>
 
-
-<ul>
-  
-</ul>
-
 <?php snippet('footer') ?>

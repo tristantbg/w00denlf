@@ -58,16 +58,18 @@ $(function() {
             }
         },
         changeTitle: function(newTitle, instant) {
-            var delay = instant ? 0 : 1000;
-            $header.removeClass('menu-open');
-            $siteTitle.addClass('hidden');
-            $sectionTitle.addClass('hidden');
-            setTimeout(function() {
-                window.clearTimeout(timeoutChangeTitle);
-                timeoutChangeTitle = setTimeout(function() {
-                    $sectionTitle.html(newTitle).removeClass('hidden');
-                }, delay);
-            }, 800);
+            if (newTitle) {
+              var delay = instant ? 0 : 1000;
+              $header.removeClass('menu-open');
+              $siteTitle.addClass('hidden');
+              $sectionTitle.addClass('hidden');
+              setTimeout(function() {
+                  window.clearTimeout(timeoutChangeTitle);
+                  timeoutChangeTitle = setTimeout(function() {
+                      $sectionTitle.html(newTitle).removeClass('hidden');
+                  }, delay);
+              }, 800);
+            }
         },
         loadSlider: function() {
             $slider = $('.sections-slider').flickity({
