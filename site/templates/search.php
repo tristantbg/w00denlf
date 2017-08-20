@@ -3,7 +3,7 @@
 <div id="blog-categories" class="sections-slider">
 	<section class="blog-section" data-title="<?= $page->title()->escape() ?>">
 		<div class="blog-posts">
-			<p><?= $posts->count() ?> résultats pour “<?= $query ?>”</p>
+			<div class="post-content content--text"><?= $posts->count() ?> résultats pour “<?= $query ?>”</div>
 			<?php foreach($posts as $post): ?>
 				<?php snippet('foundarticle', array('post' => $post)) ?>
 			<?php endforeach ?>

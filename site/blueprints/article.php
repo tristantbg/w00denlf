@@ -68,9 +68,16 @@ fields:
           text:
             label: Text
             type: textarea
+      oneimage:
+        label: Image
+        snippet: sections/oneimage
+        fields:
+          media:
+            label: Image
+            type: image
       images:
-        label: Images
-        snippet: sections/slider
+        label: Slider
+        snippet: sections/images
         fields:
           medias:
             label: Images

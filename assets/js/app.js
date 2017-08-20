@@ -36,11 +36,7 @@ $(function() {
                 $(window).load(function() {
                     app.loadSlider();
                     app.loadPostsSliders();
-                    $(".loader").fadeOut("fast", function() {
-                        if (window.location.hash.substr(1).length < 1) {
-                            setTimeout(app.getLastPost, 500);
-                        }
-                    });
+                    $(".loader").fadeOut("fast", function() {});
                 });
             });
         },
@@ -89,6 +85,7 @@ $(function() {
             });
             $slider.flkty = $slider.data('flickity');
             if (typeof $slider.flkty != 'undefined') {
+                
                 $slider.count = $slider.flkty.slides.length;
                 $slider.on('staticClick.flickity', function(event, pointer, cellElement, cellIndex) {
                     if (typeof cellIndex == 'number') {
@@ -103,6 +100,9 @@ $(function() {
                 var lastIndex;
                 // Change section onLoad
                 var hash = window.location.hash.substr(1);
+                if (hash.length < 1) {
+                    setTimeout(app.getLastPost, 500);
+                }
                 if ($slider.flkty && hash.length > 0) {
                     $slider.flickity('selectCell', '#' + hash);
                     var slide = $($slider.flkty.selectedElement).attr('id');
@@ -113,7 +113,7 @@ $(function() {
                 $slider.on('select.flickity', function() {
                     slide = $($slider.flkty.selectedElement).attr('id');
                     if (typeof slide != 'undefined') {
-                      window.location.hash = slide;
+                        window.location.hash = slide;
                     }
                     if (lastIndex != $slider.flkty.selectedIndex) {
                         app.changeTitle($($slider.flkty.selectedElement).data("title"));
@@ -142,7 +142,7 @@ $(function() {
             }
         },
         loadPostsSliders: function() {
-          $('.post-content.content--images').flickity({
+            $('.post-content.content--images').flickity({
                 cellSelector: '.cell',
                 imagesLoaded: true,
                 setGallerySize: false,
@@ -156,7 +156,6 @@ $(function() {
                 draggable: false,
                 // dragThreshold: 40
             });
-            
         },
         goIndex: function() {},
         smoothState: function(container, target) {
