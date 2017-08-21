@@ -6,7 +6,7 @@ if (isset($postTypes) && $post->type()->isNotEmpty()){
 }
 ?>
 <div class="blog-item<?php e(isset($lastPost) && $post->is($lastPost), ' last-post') ?>">
-	<div class="item-header">
+	<div class="blog-item--header">
 		<h2 class="blog-item--title">
 			<a href="<?= $post->url() ?>"><?= $post->title()->html() ?></a>
 		</h2>
@@ -21,10 +21,15 @@ if (isset($postTypes) && $post->type()->isNotEmpty()){
 			<?= $post->date("d.m.Y") ?>
 		</div>
 	</div>
-	<div class="item-chapeau">
+	<?php if($post->featured()->isNotEmpty() && $featured = $post->featured()->toFile()): ?>
+		<div class="blog-item--featured">
+			<img src="<?= $featured->thumb('slider')->url() ?>" alt="<?= $post->title()->html() . c::get('alt') ?>" width="100%">
+		</div>
+	<?php endif ?>
+	<div class="blog-item--chapeau">
 		<?= $post->text()->kt() ?>
 	</div>
-	<div class="item-content">
+	<div class="blog-item--content">
 		<?php foreach($post->sections()->toStructure() as $section): ?>
 		  <?php snippet('sections/' . $section->_fieldset(), array('data' => $section)) ?>
 		<?php endforeach ?>

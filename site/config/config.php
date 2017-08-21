@@ -36,6 +36,10 @@ c::set('thumbs.presets', [
 	'slider' => ['width' => 1000, 'quality' => 90],
 	]);
 
+// Vars
+
+c::set('alt', ' - © ' . site()->title()->escape());
+
 // Main
 
 c::set('home', 'blog');

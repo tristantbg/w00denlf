@@ -1,5 +1,5 @@
 <div class="blog-item">
-	<div class="item-header">
+	<div class="blog-item--header">
 		<h2 class="blog-item--title">
 			<a href="<?= $post->url() ?>"><?= $post->title()->html() ?></a>
 		</h2>
@@ -10,7 +10,7 @@
 			<?= $post->date("d.m.Y") ?>
 		</div>
 	</div>
-	<div class="item-chapeau">
-		<?= $post->text()->kt() ?>
+	<div class="blog-item--chapeau">
+		<?= $post->text()->excerpt(200) ?>
 	</div>
 </div>

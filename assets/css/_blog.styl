@@ -36,34 +36,38 @@ section.blog-section
 	transform translateY(100vh) translateZ(0)
 	padding-bottom $padding
 	margin-top ($font_header*2)
+	img
+		display block
 
 .blog-item
 	span(1)
 	margin-bottom ($font_header*2)
 
-.item-header, .item-chapeau
+.blog-item--header, .blog-item--chapeau, #search-header
 	span(1)
 	padding 0 ($padding/2)
+
+#search-header
+	margin-bottom 2em
 
 .blog-item--type, .blog-item--date
 	column(1/2)
 	margin 1em 0
 
-.item-chapeau
+.blog-item--chapeau, .blog-item--featured
+	span(1)
 	margin-bottom 1em
 
-.item-content
+.blog-item--content
 	span(1)
 	section
 		span(1)
 
 .post-content
+	span(1)
 	margin-bottom $padding
 
-.post-content.content--text
-	padding 0 ($padding/2)
-
-.post-content.content--embed
+.post-content.content--text, .post-content.content--embed
 	padding 0 ($padding/2)
 
 .post-content.content--images
