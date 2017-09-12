@@ -1,7 +1,13 @@
 <?php snippet('header') ?>
 
-<h1><?php echo $page->title()->html() ?></h1>
-
-<p><?php echo $page->text()->kirbytext() ?></p>
+<div id="blog-categories" class="sections-slider">
+	<section class="blog-section" data-title="<?= $page->title()->escape() ?>">
+		<div class="blog-posts">
+			<div class="blog-posts--inner">
+				<?= $page->text()->kt() ?>
+			</div>
+		</div>
+	</section>
+</div>
 
 <?php snippet('footer') ?>

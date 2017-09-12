@@ -1,7 +1,7 @@
 <?php
 
 return function ($site, $pages, $page) {
-	$types = $page->children()->visible();
+	$types = $site->index()->filterBy('intendedTemplate', 'type')->visible();
 	$categories = $site->index()->filterBy('intendedTemplate', 'category')->visible();
 	$menuPages = $site->index()->filterBy('intendedTemplate', 'default')->visible();
 	$query   = get('q');

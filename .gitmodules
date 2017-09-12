@@ -19,3 +19,6 @@
 [submodule "site/plugins/autoid"]
 	path = site/plugins/autoid
 	url = https://github.com/helllicht/kirby-autoid.git
+[submodule "site/plugins/imagekit"]
+	path = site/plugins/imagekit
+	url = https://github.com/fabianmichael/kirby-imagekit.git

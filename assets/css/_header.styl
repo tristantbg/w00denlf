@@ -6,11 +6,12 @@ header
 	left $padding
 	z-index 500
 	overflow hidden
+	// background $primary
 	#current-title
 		position relative
 		font-size $font_header
 		z-index 20
-		overflow hidden
+		// overflow hidden
 	#menu-arrow
 		width 1em
 		height 1em
@@ -98,6 +99,8 @@ header
 	display none
 	li
 		white-space nowrap
+		line-height 95%
+		min-height 1em
 	&.active
 		display block
 

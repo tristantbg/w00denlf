@@ -17,9 +17,11 @@ fields:
     sort: flip
     columns:
       title: Title
-      date:
-        label: Date
-        snippet: index/modified
+      uri: Slug
       uri:
         label: Type
         snippet: index/type
+      date:
+        label: Date
+        sort: desc
+        snippet: index/modified

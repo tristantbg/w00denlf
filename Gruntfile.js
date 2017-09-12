@@ -3,11 +3,14 @@ module.exports = function(grunt) {
         concat: {
             plugins: {
                 src: [
-                'site/plugins/embed/assets/js/embed.js',
+                'site/plugins/embed/assets/js/embed.js', 
+                'node_modules/iscroll/build/iscroll.js', 
                 'node_modules/flickity/dist/flickity.pkgd.min.js', 
+                // 'node_modules/infinite-scroll/dist/infinite-scroll.pkgd.min.js', 
+                // 'node_modules/jscroll/jquery.jscroll.js', 
                 //'node_modules/lazysizes/plugins/object-fit/ls.object-fit.min.js', 
-                //'node_modules/lazysizes/lazysizes.min.js', 
-                //'node_modules/lazysizes/plugins/optimumx/ls.optimumx.min.js', 
+                'node_modules/lazysizes/lazysizes.min.js', 
+                'node_modules/lazysizes/plugins/optimumx/ls.optimumx.min.js', 
                 //'node_modules/lazysizes/plugins/unveilhooks/ls.unveilhooks.min.js', 
                 //'node_modules/viewport-units-buggyfill/viewport-units-buggyfill.js',
                 //'node_modules/smoothstate/jquery.smoothState.min.js'

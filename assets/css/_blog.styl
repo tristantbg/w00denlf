@@ -14,8 +14,10 @@ section.blog-section
 	span(1/2.4)
 	height 100%
 	overflow hidden
+	+below($md)
+		span(1)
 	&.is-selected
-		overflow scroll
+		// overflow scroll
 		.blog-category--image
 			transition-delay 0.8s
 			transform "translateY(calc(%s - 100%)) translateZ(0)" % $padding
@@ -26,24 +28,37 @@ section.blog-section
 .blog-category--image
 	transition transform 0.8s ease
 	position absolute
+	z-index 100
 	width 100%
 	height 100vh
 	background-size cover
 	background-position center
 
 .blog-posts
+	position relative
+	height (100vh - ($font_header*4))
 	transition transform 0.8s ease
 	transform translateY(100vh) translateZ(0)
 	padding-bottom $padding
 	margin-top ($font_header*2)
+	.blog-posts--inner
+		height auto
+		display inline-block
 	img
 		display block
+
+.iScrollVerticalScrollbar
+	width .4rem !important
+	.iScrollIndicator
+		border none !important
+		border-radius 0 !important
+		background $secondary !important
 
 .blog-item
 	span(1)
 	margin-bottom ($font_header*2)
 
-.blog-item--header, .blog-item--chapeau, #search-header
+.blog-item--header, .blog-item--chapeau, nav.pagination, #search-header
 	span(1)
 	padding 0 ($padding/2)
 
@@ -69,6 +84,13 @@ section.blog-section
 
 .post-content.content--text, .post-content.content--embed
 	padding 0 ($padding/2)
+
+.post-content.content--image
+	position relative
+	img
+		position absolute
+		top 0
+		left 0
 
 .post-content.content--images
 	height 40rem

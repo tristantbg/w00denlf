@@ -1,3 +1,16 @@
+<?php 
+	$image = $data->media()->toFile();
+	if ($image->caption()->isNotEmpty()) {
+		$caption = $image->caption()->escape();
+	} else {
+		$page = $image->page();
+		$caption = $page->title()->escape().' — © '.$site->title()->escape();
+	}
+?>
 <section class="post-content content--image">
-	<img src="<?= $data->media()->toFile()->thumb('slider')->url() ?>" alt="" width="100%">
+	<img class="lazyload" data-src="<?= $image->thumb('slider')->url() ?>" alt="<?= $caption ?>" width="100%" />
+	<div class="ph" style="padding-bottom: <?= 100 / $image->ratio() ?>%"></div>
+	<noscript>
+		<img src="<?= $image->thumb('slider')->url() ?>" alt="<?= $caption ?>" width="100%" />
+	</noscript>
 </section>

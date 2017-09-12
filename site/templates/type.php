@@ -13,7 +13,7 @@ function _bot_detected() {
 $bot = _bot_detected();
 ?>
 
-<?php if(!$bot): ?>
+<?php if(!$bot && !r::ajax()): ?>
 <script>
 	window.location = window.location.href.replace("types/", "types/#");
 </script>
