@@ -52,9 +52,9 @@ $(function() {
             }
         },
         getLastPost: function(instant) {
-            if (typeof $slider.flkty != 'undefined') {
+            if (typeof $slider != 'undefined') {
                 $lastPostSectionIndex = $('.last-post').parents("section").index();
-                $slider.flickity('select', $lastPostSectionIndex, true, instant);
+                $slider.select($lastPostSectionIndex, true, instant);
             }
         },
         changeTitle: function(newTitle, instant) {
@@ -76,7 +76,8 @@ $(function() {
             if ($('section.blog-section').length > 2) {
                 manySections = true;
             }
-            $slider = $('.sections-slider').flickity({
+            var sectionsSlider = document.querySelector('.sections-slider');
+            var $slider = new Flickity(sectionsSlider, {
                 cellSelector: 'section.blog-section',
                 imagesLoaded: false,
                 setGallerySize: false,
@@ -89,20 +90,20 @@ $(function() {
                 draggable: manySections,
                 dragThreshold: 40
             });
-            $slider.flkty = $slider.data('flickity');
-            if (typeof $slider.flkty != 'undefined') {
-                $slider.count = $slider.flkty.slides.length;
+            // $slider.flkty = $slider.data('flickity');
+            if (typeof $slider != 'undefined') {
+                $slider.count = $slider.slides.length;
                 $slider.on('staticClick.flickity', function(event, pointer, cellElement, cellIndex) {
                     if (typeof cellIndex == 'number') {
-                        $slider.flickity('selectCell', cellIndex);
+                        $slider.selectCell(cellIndex);
                     }
                 });
                 $body.on('click', '[data-slider]', function(event) {
                     event.preventDefault();
-                    $slider.flickity('selectCell', '#' + $(this).data('slider'));
+                    $slider.selectCell('#' + $(this).data('slider'));
                     $header.removeClass('visible');
                 });
-                var lastIndex = $slider.flkty.selectedIndex;
+                var lastIndex = $slider.selectedIndex;
                 // Change section onLoad
                 var hash = window.location.hash.substr(1);
                 if (hash.length < 1) {
@@ -110,28 +111,28 @@ $(function() {
                     // Instant mode
                     app.getLastPost(true);
                 }
-                if ($slider.flkty && hash.length > 0) {
-                    $slider.flickity('selectCell', '#' + hash, true, true);
-                    var slide = $($slider.flkty.selectedElement).attr('id');
-                    app.changeTitle($($slider.flkty.selectedElement).data("title"));
+                if ($slider && hash.length > 0) {
+                    $slider.selectCell('#' + hash, true, true);
+                    var slide = $($slider.selectedElement).attr('id');
+                    app.changeTitle($($slider.selectedElement).data("title"));
                     window.location.hash = slide;
                 }
-                $slider.on('select.flickity', function() {
+                $slider.on('select', function() {
                     $header.attr('style', '');
-                    slide = $($slider.flkty.selectedElement).attr('id');
+                    slide = $($slider.selectedElement).attr('id');
                     console.log(slide);
                     if (typeof slide != 'undefined') {
                         window.location.hash = slide;
                     }
-                    if (lastIndex != $slider.flkty.selectedIndex) {
-                        app.changeTitle($($slider.flkty.selectedElement).data("title"));
-                        lastIndex = $slider.flkty.selectedIndex;
+                    if (lastIndex != $slider.selectedIndex) {
+                        app.changeTitle($($slider.selectedElement).data("title"));
+                        lastIndex = $slider.selectedIndex;
                     }
                 });
-                $slider.on( 'dragStart.flickity', function( event, pointer ) {
-                  $header.attr('style', '');
+                $slider.on('dragStart', function(event, pointer) {
+                    $header.attr('style', '');
                 });
-                $slider.on('settle.flickity', function() {
+                $slider.on('settle', function() {
                     setTimeout(function() {
                         $header.attr('style', 'background: #fff');
                     }, 1500);
