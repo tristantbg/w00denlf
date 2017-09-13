@@ -56,6 +56,11 @@ $(function() {
             if (typeof $slider != 'undefined') {
                 $lastPostSectionIndex = $('.last-post').parents("section").index();
                 $slider.select($lastPostSectionIndex, true, instant);
+                if (instant) {
+                    setTimeout(function() {
+                        app.changeTitle($($slider.selectedElement).data("title"));
+                    }, 2000);
+                }
             }
         },
         changeTitle: function(newTitle, instant) {
@@ -78,7 +83,7 @@ $(function() {
                 manySections = true;
             }
             var sectionsSlider = document.querySelector('.sections-slider');
-            var $slider = new Flickity(sectionsSlider, {
+            $slider = new Flickity(sectionsSlider, {
                 cellSelector: 'section.blog-section',
                 imagesLoaded: false,
                 setGallerySize: false,
