@@ -11,6 +11,6 @@
 	<img class="lazyload" data-src="<?= $image->thumb(c::get('thumbs-slider'))->url() ?>" alt="<?= $caption ?>" width="100%" />
 	<div class="ph" style="padding-bottom: <?= 100 / $image->ratio() ?>%"></div>
 	<noscript>
-		<img src="<?= $image->thumb('slider')->url() ?>" alt="<?= $caption ?>" width="100%" />
+		<img src="<?= $image->thumb(c::get('thumbs-slider'))->url() ?>" alt="<?= $caption ?>" width="100%" />
 	</noscript>
 </section>

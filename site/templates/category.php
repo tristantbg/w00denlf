@@ -25,7 +25,7 @@ $bot = _bot_detected();
 <section class="blog-section" id="<?= $page->uid() ?>" data-title="<?= $page->title()->escape() ?>">
 	<?php $posts = $page->children()->visible()->sortBy('date', 'desc')->paginate(1) ?>
 	<?php if($page->featured()->isNotEmpty()): ?>
-		<div class="blog-category--image" style="background-image: url(<?= $page->featured()->toFile()->thumb('category')->url() ?>)">
+		<div class="blog-category--image" style="background-image: url(<?= $page->featured()->toFile()->thumb(c::get('thumbs-category'))->url() ?>)">
 		</div>
 	<?php endif ?>
 	<div class="blog-posts">

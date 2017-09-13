@@ -100,11 +100,13 @@ section.blog-section
 		height 40rem
 		img
 			display block
-	.flickity-prev-next-button .arrow
-		fill $secondary
 	.flickity-prev-next-button
 		background transparent
-	.flickity-prev-next-button.next
-		right 0
-	.flickity-prev-next-button.previous
-		left 0
+		&.next
+			right 0
+		&.previous
+			left 0
+		svg
+			pointer-events none
+		.arrow
+			fill $secondary

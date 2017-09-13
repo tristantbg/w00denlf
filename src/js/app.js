@@ -4,6 +4,7 @@ var width = $(window).width(),
     isMobile = false,
     target,
     $slider,
+    scrollers,
     lastTarget = false,
     timeoutChangeTitle,
     $root = '/';
@@ -93,7 +94,7 @@ $(function() {
             // $slider.flkty = $slider.data('flickity');
             if (typeof $slider != 'undefined') {
                 $slider.count = $slider.slides.length;
-                $slider.on('staticClick.flickity', function(event, pointer, cellElement, cellIndex) {
+                $slider.on('staticClick', function(event, pointer, cellElement, cellIndex) {
                     if (typeof cellIndex == 'number') {
                         $slider.selectCell(cellIndex);
                     }
@@ -166,7 +167,7 @@ $(function() {
                 setGallerySize: false,
                 percentPosition: false,
                 lazyLoad: 3,
-                accessibility: true,
+                accessibility: false,
                 // cellAlign: 'left',
                 wrapAround: false,
                 contain: true,
