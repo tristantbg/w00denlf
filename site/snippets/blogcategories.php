@@ -6,7 +6,7 @@
 	<section class="blog-section" id="<?= $category->uid() ?>" data-title="<?= $category->title()->escape() ?>">
 		<?php $posts = $category->children()->visible()->sortBy('date', 'desc') ?>
 		<?php if($category->featured()->isNotEmpty()): ?>
-			<div class="blog-category--image" style="background-image: url(<?= $category->featured()->toFile()->thumb('category')->url() ?>)">
+			<div class="blog-category--image" style="background-image: url(<?= $category->featured()->toFile()->thumb(c::get('thumbs-category'))->url() ?>)">
 			</div>
 		<?php endif ?>
 		<div class="blog-posts">

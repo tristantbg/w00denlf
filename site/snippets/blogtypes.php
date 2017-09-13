@@ -7,7 +7,7 @@
 	<section class="blog-section" id="<?= $type->uid() ?>" data-title="<?= $type->title()->escape() ?>">
 		<?php 
 		$style = "";
-		if($type->featured()->isNotEmpty()) $style .= "background-image: url(".$type->featured()->toFile()->thumb('category')->url().");";
+		if($type->featured()->isNotEmpty()) $style .= "background-image: url(".$type->featured()->toFile()->thumb(c::get('thumbs-category'))->url().");";
 		// if($type->featuredcolor()->isNotEmpty()) $style .= "background-color: " . $type->featuredcolor() . ";";
 		?>
 		<?php if($style != ""): ?>

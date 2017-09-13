@@ -73,7 +73,7 @@ $(function() {
         },
         loadSlider: function() {
             var manySections = false;
-            if ($('section.blog-section').length > 3) {
+            if ($('section.blog-section').length > 2) {
                 manySections = true;
             }
             $slider = $('.sections-slider').flickity({
@@ -128,10 +128,13 @@ $(function() {
                         lastIndex = $slider.flkty.selectedIndex;
                     }
                 });
+                $slider.on( 'dragStart.flickity', function( event, pointer ) {
+                  $header.attr('style', '');
+                });
                 $slider.on('settle.flickity', function() {
                     setTimeout(function() {
                         $header.attr('style', 'background: #fff');
-                    }, 800);
+                    }, 1500);
                 });
                 //$slider.first('.slide').find('.lazyimg:not(".lazyloaded")').addClass('lazyload');
                 // $slider.on('select.flickity', function() {
@@ -155,7 +158,8 @@ $(function() {
             }
         },
         loadPostsSliders: function() {
-            $('.post-content.content--images').flickity({
+            $postsSliders = $('.post-content.content--images');
+            $postsSliders.flickity({
                 cellSelector: '.cell',
                 imagesLoaded: true,
                 setGallerySize: false,

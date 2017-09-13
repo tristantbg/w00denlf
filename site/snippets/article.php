@@ -31,7 +31,7 @@ if (isset($postTypes) && $post->type()->isNotEmpty()){
 	</div>
 	<div class="blog-item--content">
 		<?php foreach($post->sections()->toStructure() as $section): ?>
-		  <?php snippet('sections/' . $section->_fieldset(), array('data' => $section)) ?>
+		  <?php snippet('sections/' . $section->_fieldset(), array('data' => $section, 'page' => $post)) ?>
 		<?php endforeach ?>
 	</div>
 </div>

@@ -22,3 +22,6 @@
 [submodule "site/plugins/imagekit"]
 	path = site/plugins/imagekit
 	url = https://github.com/fabianmichael/kirby-imagekit.git
+[submodule "site/plugins/kirby-styledmap"]
+	path = site/plugins/kirby-styledmap
+	url = https://github.com/bnomei/kirby-styledmap.git

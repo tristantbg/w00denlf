@@ -6,13 +6,13 @@
 				$caption = $image->caption()->escape();
 			} else {
 				$page = $image->page();
-				$caption = $page->title()->escape().' — © '.$site->title()->escape();
+				$caption = $page->title()->escape().c::get('alt');
 			}
 		?>
 		<div class="cell">
 			<img class="lazyload" data-flickity-lazyload="<?= $image->thumb('slider')->url() ?>" alt="<?= $caption ?>" height="100%" />
 			<noscript>
-				<img class="lazyload" src="<?= $image->thumb('slider')->url() ?>" alt="<?= $caption ?>" height="100%" />
+				<img class="lazyload" src="<?= $image->thumb(c::get('thumbs-slider'))->url() ?>" alt="<?= $caption ?>" height="100%" />
 			</noscript>
 		</div>
 	<?php endforeach ?>

@@ -31,6 +31,9 @@ of the system, please check out http://getkirby.com/docs/advanced/options
 
 // Thumb presets
 
+c::set('thumbs-slider', ['width' => 1000, 'quality' => 90]);
+c::set('thumbs-category', ['height' => 2000, 'quality' => 90]);
+
 c::set('thumbs.presets', [
 	'category' => ['height' => 2000, 'quality' => 90],
 	'slider' => ['width' => 1000, 'quality' => 90],
@@ -39,6 +42,21 @@ c::set('thumbs.presets', [
 // Vars
 
 c::set('alt', ' - © ' . site()->title()->escape());
+
+// Map
+c::set('plugin.styledmap.license', '3lT2u9bZYOf0VlNVjoeAvRRGpxnzHWRC6tNFgmj9');
+c::set('plugin.styledmap.apikey', 'AIzaSyCw8Qq6fZhFXQynXLpejgADkRUxwsBMCyw');
+c::set('plugin.styledmap.jsoptions', [
+  'draggable'         => false,
+  'fullscreenControl' => false,
+  'mapTypeControl'    => false,
+  'rotateControl'     => false,
+  'scaleControl'      => true,
+  'scrollwheel'       => false,
+  'streetViewControl' => false,
+  'zoomControl'       => true,
+  ]
+);
 
 // Main
 

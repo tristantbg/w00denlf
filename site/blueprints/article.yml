@@ -1,5 +1,3 @@
-<?php if(!defined('KIRBY')) exit ?>
-
 title: Article
 files: true
 pages: false
@@ -57,6 +55,9 @@ fields:
   text:
     label: Chapeau
     type: textarea
+  maintext:
+    label: Main text
+    type: textarea
   sections:
     label: Sections
     type: builder
@@ -70,14 +71,14 @@ fields:
             type: textarea
       oneimage:
         label: Image
-        snippet: sections/oneimage
+        style: table
         fields:
           media:
             label: Image
             type: image
       images:
         label: Slider
-        snippet: sections/images
+        style: table
         fields:
           medias:
             label: Images
@@ -89,3 +90,18 @@ fields:
           url:
             label: URL
             type: url
+      map:
+        label: Map
+        entry: >
+              {{location}}
+        fields:
+          location:
+            label: Location
+            type: map
+            required: true
+            center:
+              lat: 48.856614
+              lng: 2.3522219000000177
+              zoom: 11
+            help: >
+              Move the pin or search for a location.
