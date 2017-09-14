@@ -59,6 +59,9 @@ $(function() {
                 if (instant) {
                     setTimeout(function() {
                         app.changeTitle($($slider.selectedElement).data("title"));
+                        setTimeout(function() {
+                            $header.attr('style', 'background: #fff');
+                        }, 1500);
                     }, 2000);
                 }
             }

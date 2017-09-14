@@ -25,6 +25,9 @@ fields:
   title:
     label: Title
     type:  text
+  subtitle:
+    label: Subtitle
+    type:  text
   date:
     label: Post date
     type:  datetime

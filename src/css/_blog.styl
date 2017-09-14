@@ -41,7 +41,7 @@ section.blog-section
 	transition transform 0.8s ease
 	transform translateY(100vh) translateZ(0)
 	padding-bottom $padding
-	margin-top ($font_header*2)
+	margin-top 'calc(%s + %s)' % ($font_header ($padding*3))
 	.blog-posts--inner
 		height auto
 		display inline-block
@@ -63,12 +63,24 @@ section.blog-section
 	span(1)
 	padding 0 ($padding/2)
 
+.blog-item--header
+	margin-bottom 1em
+	.blog-item--infos
+		span(1)
+		margin-bottom 1em
+		padding 0.3em 0 0.2em
+		border-top 0.2rem solid
+		border-bottom 0.2rem solid
+	.blog-item--title
+		span(1)
+		h3
+			margin-top .6em
+
 #search-header
 	margin-bottom 2em
 
 .blog-item--type, .blog-item--date
 	column(1/2)
-	margin 1em 0
 
 .blog-item--chapeau, .blog-item--featured
 	span(1)
@@ -82,6 +94,10 @@ section.blog-section
 .post-content
 	span(1)
 	margin-bottom $padding
+	a
+		text-decoration underline
+		-webkit-text-decoration-skip ink
+		text-decoration-skip ink
 
 .post-content.content--text, .post-content.content--embed
 	padding 0 ($padding/2)
