@@ -49,11 +49,11 @@
 	<?php endif ?>
 
 	<meta itemprop="description" content="<?= $site->description()->html() ?>">
-	<!-- <link rel="shortcut icon" href="<?php //url('assets/images/favicon.ico') ?>">
-	<link rel="icon" href="<?php //url('assets/images/favicon.ico') ?>" type="image/x-icon"> -->
+	<link rel="shortcut icon" href="<?= url('assets/images/favicon.ico') ?>">
+	<link rel="icon" href="<?= url('assets/images/favicon.ico') ?>" type="image/x-icon">
 
 	<?php 
-	echo css('assets/css/build/build.min.css');
+	echo css('assets/css/build/build.min.css?=v2');
 	echo js('assets/js/vendor/modernizr.min.js');
 	?>
 	
@@ -92,10 +92,10 @@
 			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 				 viewBox="0 0 72.3 40.3" enable-background="new 0 0 72.3 40.3" xml:space="preserve">
 			<g id="a-left">
-				<rect x="-5.8" y="18.1" transform="matrix(0.7063 0.7079 -0.7079 0.7063 20.0134 -7.9577)" width="50.8" height="4"/>
+				<rect x="-7" y="19" transform="matrix(0.7063 0.7079 -0.7079 0.7063 20.0134 -7.9577)" width="50.8" height="3"/>
 			</g>			
 			<g id="a-right">
-				<rect x="50.7" y="-5.3" transform="matrix(0.7081 0.7061 -0.7061 0.7081 29.6006 -31.3242)" width="4" height="50.8"/>
+				<rect x="50.7" y="-5.3" transform="matrix(0.7081 0.7061 -0.7061 0.7081 29.6006 -31.3242)" width="3" height="50.8"/>
 			</g>			
 			</svg>
 		</div>

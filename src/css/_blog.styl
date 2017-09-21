@@ -2,13 +2,17 @@
 	height 100vh
 	padding-left $padding
 	> .flickity-viewport
+		transform translateX(10vw) translateZ(0)
 		overflow initial !important
 		position fixed
 		height 100%
 		width 100%
 		top 0
 		left $padding
-	
+	&.loaded
+		> .flickity-viewport
+			transition transform 600ms ease
+			transform translateZ(0)
 
 section.blog-section
 	span(1/2.4)
