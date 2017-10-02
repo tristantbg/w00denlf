@@ -53,6 +53,8 @@ section.blog-section
 		display block
 
 .iScrollVerticalScrollbar
+	top 0 !important
+	bottom 0 !important
 	width .4rem !important
 	.iScrollIndicator
 		border none !important
@@ -80,6 +82,13 @@ section.blog-section
 		h3
 			margin-top .6em
 
+h3
+	span(1)
+	margin-bottom 1em
+	padding 0.3em 0 0.2em
+	border-top 0.2rem solid
+	border-bottom 0.2rem solid
+
 #search-header
 	margin-bottom 2em
 
@@ -104,7 +113,7 @@ section.blog-section
 		text-decoration-skip ink
 
 .post-content.content--text, .post-content.content--embed
-	padding 0 ($padding/2)
+	padding 0 ($padding/2 + 0.3) 0 ($padding/2)
 
 .post-content.content--image
 	position relative

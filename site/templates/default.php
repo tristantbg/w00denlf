@@ -4,7 +4,9 @@
 	<section class="blog-section" data-title="<?= $page->title()->escape() ?>">
 		<div class="blog-posts">
 			<div class="blog-posts--inner">
-				<?= $page->text()->kt() ?>
+				<section class="post-content content--text">
+					<?= $page->text()->kt() ?>
+				</section>
 			</div>
 		</div>
 	</section>
