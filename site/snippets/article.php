@@ -35,6 +35,11 @@ if (isset($postTypes) && $post->type()->isNotEmpty()){
 		<?= $post->text()->kt() ?>
 	</div>
 	<div class="blog-item--content">
+		<?php if($post->mainText()->isNotEmpty()): ?>
+			<section class="post-content content--text">
+				<?= $post->mainText()->kt() ?>
+			</section>
+		<?php endif ?>
 		<?php foreach($post->sections()->toStructure() as $section): ?>
 		  <?php snippet('sections/' . $section->_fieldset(), array('data' => $section, 'page' => $post)) ?>
 		<?php endforeach ?>

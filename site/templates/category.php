@@ -13,11 +13,11 @@ function _bot_detected() {
 $bot = _bot_detected();
 ?>
 
-<!-- <?php if(!$bot && !r::ajax()): ?>
+<?php if(!$bot && !r::ajax()): ?>
 <script>
 	window.location = window.location.href.replace("blog/", "/#");
 </script>
-<?php endif ?> -->
+<?php endif ?>
 
 <div id="blog-categories" class="sections-slider">
 

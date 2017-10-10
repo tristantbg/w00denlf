@@ -3,6 +3,7 @@ var width = $(window).width(),
     height = $(window).height(),
     isMobile = false,
     target,
+    $menuArrow,
     $slider,
     scrollers,
     lastTarget = false,
@@ -16,6 +17,7 @@ $(function() {
                 $body = $('body');
                 $header = $('header');
                 $siteTitle = $('#site-title');
+                $menuArrow = $('#menu-arrow');
                 $sectionTitle = $('#section-title');
                 app.sizeSet();
                 $(document).keyup(function(e) {
@@ -59,9 +61,6 @@ $(function() {
                 if (instant) {
                     setTimeout(function() {
                         app.changeTitle($($slider.selectedElement).data("title"));
-                        setTimeout(function() {
-                            $header.attr('style', 'background: #fff');
-                        }, 1500);
                     }, 3000);
                 }
             }
@@ -127,12 +126,12 @@ $(function() {
                     setTimeout(function() {
                         app.changeTitle($($slider.selectedElement).data("title"));
                         setTimeout(function() {
-                            $header.attr('style', 'background: #fff');
-                        }, 1500);
+                            $menuArrow.show();
+                        }, 2000);
                     }, 3000);
                 }
                 $slider.on('select', function() {
-                    $header.attr('style', '');
+                    $menuArrow.hide();
                     slide = $($slider.selectedElement).attr('id');
                     console.log(slide);
                     if (typeof slide != 'undefined') {
@@ -143,13 +142,10 @@ $(function() {
                         lastIndex = $slider.selectedIndex;
                     }
                 });
-                $slider.on('dragStart', function(event, pointer) {
-                    $header.attr('style', '');
-                });
                 $slider.on('settle', function() {
                     setTimeout(function() {
-                        $header.attr('style', 'background: #fff');
-                    }, 1500);
+                        $menuArrow.show();
+                    }, 2000);
                 });
                 $("#blog-categories").addClass('loaded');
                 //$slider.first('.slide').find('.lazyimg:not(".lazyloaded")').addClass('lazyload');

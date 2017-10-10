@@ -8,11 +8,16 @@ header
 	overflow hidden
 	// transition background-color 200ms ease
 	// background $primary
+	+below($md)
+		width 'calc(100% - %s)' % ($padding*2)
 	#current-title
 		position relative
-		font-size $font_header
 		z-index 20
 		// overflow hidden
+		+above($md + 1)
+			font-size $font_header
+		+below($md)
+			font-size $font_header_mobile
 	#menu-arrow
 		width 1em
 		height 1em
@@ -62,6 +67,8 @@ header
 		left $padding
 		background $primary
 		z-index 0
+		+below($md)
+			width 'calc(100% - %s)' % ($padding*2)
 	#menu, #menu-background
 		display none
 	&.menu-open
@@ -73,7 +80,7 @@ header
 			display block
 		#menu-arrow
 			svg #a-left
-				transform translateX(45%) translateZ(0)
+				transform translateX(3rem) translateZ(0)
 
 [data-target="menu"]
 	cursor pointer
@@ -96,8 +103,11 @@ header
 		margin-right 1em
 
 .navigation
-	font-size $font_header
 	display none
+	+above($md + 1)
+		font-size $font_header
+	+below($md)
+		font-size $font_header_mobile
 	li
 		white-space nowrap
 		line-height 95%
