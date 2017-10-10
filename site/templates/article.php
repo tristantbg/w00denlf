@@ -7,7 +7,7 @@
 			</div>
 		<?php endif ?>
 		<div class="blog-posts">
-			<?php snippet('article', array('post' => $page)) ?>
+			<?php snippet('article', array('post' => $page, 'withContent' => true)) ?>
 		</div>
 	</section>
 </div>

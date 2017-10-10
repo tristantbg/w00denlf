@@ -15,7 +15,7 @@ $bot = _bot_detected();
 
 <?php if(!$bot && !r::ajax()): ?>
 <script>
-	window.location = window.location.href.replace("blog/", "/#");
+	window.location = window.location.href.replace("blog/", "#");
 </script>
 <?php endif ?>
 
@@ -23,7 +23,7 @@ $bot = _bot_detected();
 
 <?php if ($page->hasVisibleChildren()): ?>
 <section class="blog-section" id="<?= $page->uid() ?>" data-title="<?= $page->title()->escape() ?>">
-	<?php $posts = $page->children()->visible()->sortBy('date', 'desc')->paginate(1) ?>
+	<?php $posts = $page->children()->visible()->sortBy('date', 'desc') ?>
 	<?php if($page->featured()->isNotEmpty()): ?>
 		<div class="blog-category--image" style="background-image: url(<?= $page->featured()->toFile()->thumb(c::get('thumbs-category'))->url() ?>)">
 		</div>
@@ -31,9 +31,9 @@ $bot = _bot_detected();
 	<div class="blog-posts">
 		<div class="blog-posts--inner">
 			<?php foreach ($posts as $post): ?>
-				<?php snippet('article', array('post' => $post, 'typeMode' => false)) ?>
+				<?php snippet('article', array('post' => $post, 'withContent' => false, 'typeMode' => false)) ?>
 			<?php endforeach ?>
-			<?php if($posts->pagination()->hasPages()): ?>
+			<?php if($posts->hasPagination() && $posts->pagination()->hasPages()): ?>
 				<!-- pagination -->
 				<nav class="pagination">
 

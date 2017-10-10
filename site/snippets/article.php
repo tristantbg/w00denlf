@@ -19,13 +19,16 @@ if (isset($postTypes) && $post->type()->isNotEmpty()){
 			<?php endif ?>
 			</div>
 		</div>
-		<a class="blog-item--title" href="<?= $post->url() ?>">
+		<a class="blog-item--title" href="<?= $post->url() ?>" data-target="post">
 			<h2><?= $post->title()->html() ?></h2>
 			<?php if($post->subtitle()->isNotEmpty()): ?>
 			<h3><?= $post->subtitle()->html() ?></h3>
 			<?php endif ?>
 		</a>
 	</div>
+	<?php if(!$withContent): ?>
+	<a href="<?= $post->url() ?>" data-target="post">
+	<?php endif ?>
 	<?php if($post->featured()->isNotEmpty() && $featured = $post->featured()->toFile()): ?>
 		<div class="blog-item--featured">
 			<img src="<?= $featured->thumb('slider')->url() ?>" alt="<?= $post->title()->html() . c::get('alt') ?>" width="100%">
@@ -34,6 +37,7 @@ if (isset($postTypes) && $post->type()->isNotEmpty()){
 	<div class="blog-item--chapeau">
 		<?= $post->text()->kt() ?>
 	</div>
+	<?php if($withContent): ?>
 	<div class="blog-item--content">
 		<?php if($post->mainText()->isNotEmpty()): ?>
 			<section class="post-content content--text">
@@ -44,4 +48,8 @@ if (isset($postTypes) && $post->type()->isNotEmpty()){
 		  <?php snippet('sections/' . $section->_fieldset(), array('data' => $section, 'page' => $post)) ?>
 		<?php endforeach ?>
 	</div>
+	<?php endif ?>
+	<?php if(!$withContent): ?>
+	</a>
+	<?php endif ?>
 </div>

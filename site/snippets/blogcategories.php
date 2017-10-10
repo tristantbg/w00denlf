@@ -12,7 +12,7 @@
 		<div class="blog-posts">
 			<div class="blog-posts--inner">
 				<?php foreach ($posts as $post): ?>
-					<?php snippet('article', array('post' => $post, 'typeMode' => false)) ?>
+					<?php snippet('article', array('post' => $post, 'withContent' => false, 'typeMode' => false)) ?>
 				<?php endforeach ?>
 				<?php if($posts->hasPagination() && $posts->pagination()->hasPages()): ?>
 					<!-- pagination -->

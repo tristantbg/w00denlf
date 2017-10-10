@@ -5,10 +5,11 @@ var width = $(window).width(),
     target,
     $menuArrow,
     $slider,
-    scrollers,
+    scrollers = [],
+    iscrollers = [],
     lastTarget = false,
     timeoutChangeTitle,
-    $root = '/';
+    $root = '/woodenlife';
 $(function() {
     var app = {
         init: function() {
@@ -100,6 +101,8 @@ $(function() {
             });
             // $slider.flkty = $slider.data('flickity');
             if (typeof $slider != 'undefined') {
+                var lastIndex = $slider.selectedIndex;
+                var lastElement = $slider.selectedElement;
                 $slider.count = $slider.slides.length;
                 $slider.on('staticClick', function(event, pointer, cellElement, cellIndex) {
                     if (typeof cellIndex == 'number') {
@@ -108,10 +111,9 @@ $(function() {
                 });
                 $body.on('click', '[data-slider]', function(event) {
                     event.preventDefault();
-                    $slider.selectCell('#' + $(this).data('slider'));
-                    $header.removeClass('visible');
+                    target = '#' + $(this).data('slider');
+                    $slider.selectCell(target);
                 });
-                var lastIndex = $slider.selectedIndex;
                 // Change section onLoad
                 var hash = window.location.hash.substr(1);
                 if (hash.length < 1) {
@@ -127,19 +129,31 @@ $(function() {
                         app.changeTitle($($slider.selectedElement).data("title"));
                         setTimeout(function() {
                             $menuArrow.show();
+                            app.updateScrollers();
                         }, 2000);
                     }, 3000);
                 }
                 $slider.on('select', function() {
-                    $menuArrow.hide();
                     slide = $($slider.selectedElement).attr('id');
                     console.log(slide);
                     if (typeof slide != 'undefined') {
                         window.location.hash = slide;
                     }
                     if (lastIndex != $slider.selectedIndex) {
+                        $menuArrow.hide();
                         app.changeTitle($($slider.selectedElement).data("title"));
                         lastIndex = $slider.selectedIndex;
+                        lastElement = $slider.selectedElement;
+                        target = '#' + slide;
+                        $(".blog-posts--inner").empty();
+                        $.ajax({
+                            url: $(target).data("url"),
+                            cache: true
+                        }).done(function(response) {
+                            var posts = $(response).find(".blog-posts--inner").html();
+                            $(target + ' .blog-posts--inner').append(posts);
+                            app.updateScrollers();
+                        });
                     }
                 });
                 $slider.on('settle', function() {
@@ -188,13 +202,22 @@ $(function() {
             });
             scrollers = document.querySelectorAll(".blog-posts");
             if (scrollers.length > 0) {
-                var iscrollers = [];
+                iscrollers = [];
                 for (var i = scrollers.length - 1; i >= 0; i--) {
                     iscrollers[i] = new IScroll(scrollers[i], {
                         mouseWheel: true,
                         scrollbars: true
                     });
                 }
+            }
+        },
+        updateScrollers: function() {
+            if (iscrollers.length > 0) {
+                setTimeout(function() {
+                    for (var i = iscrollers.length - 1; i >= 0; i--) {
+                        iscrollers[i].refresh();
+                    }
+                }, 0);
             }
         },
         goIndex: function() {},

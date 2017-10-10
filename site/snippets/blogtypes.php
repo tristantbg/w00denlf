@@ -4,7 +4,7 @@
 
 	<?php $posts = $postsCollection->filterBy('type','==',$type->autoid()) ?>
 	<?php if ($posts->count() > 0): ?>
-	<section class="blog-section" id="<?= $type->uid() ?>" data-title="<?= $type->title()->escape() ?>">
+	<section class="blog-section" id="<?= $type->uid() ?>" data-url="<?= $type->url() ?>" data-title="<?= $type->title()->escape() ?>">
 		<?php 
 		$style = "";
 		if($type->featured()->isNotEmpty()) $style .= "background-image: url(".$type->featured()->toFile()->thumb(c::get('thumbs-category'))->url().");";
@@ -16,7 +16,7 @@
 		<div class="blog-posts">
 			<div class="blog-posts--inner">
 				<?php foreach ($posts as $post): ?>
-					<?php snippet('article', array('post' => $post, 'typeMode' => true)) ?>
+					<?php snippet('article', array('post' => $post, 'withContent' => false, 'typeMode' => true)) ?>
 				<?php endforeach ?>
 				<?php if($posts->hasPagination() && $posts->pagination()->hasPages()): ?>
 					<!-- pagination -->
