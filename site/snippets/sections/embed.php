@@ -1,3 +1,3 @@
 <section class="post-content content--embed">
-	<?php $data->url()->embed() ?>
+	<?= $data->get("first")->embed() ?>
 </section>

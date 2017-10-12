@@ -1,5 +1,5 @@
 <?php 
-	$image = $data->media()->toFile();
+	$image = $data->get("first")->toFile();
 	if ($image->caption()->isNotEmpty()) {
 		$caption = $image->caption()->escape();
 	} else {

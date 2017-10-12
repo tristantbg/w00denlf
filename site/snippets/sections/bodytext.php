@@ -1,3 +1,3 @@
 <section class="post-content content--text">
-	<?= $data->text()->kt() ?>
+	<?= $data->get("first")->kt() ?>
 </section>

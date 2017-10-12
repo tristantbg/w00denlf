@@ -22,6 +22,9 @@ files:
       columns: 3
 fields:
   prevnext: prevnext
+  mainInfos:
+    label: Main infos
+    type: headline
   title:
     label: Title
     type:  text
@@ -61,50 +64,31 @@ fields:
   maintext:
     label: Main text
     type: textarea
+  contentHeadline:
+    label: Content
+    type: headline
   sections:
-    label: Sections
-    type: builder
+    type: engineer
     fieldsets:
-      bodytext:
+      set1:
         label: Text
-        snippet: sections/bodytext
         fields:
-          text:
+          first:
             label: Text
             type: textarea
       oneimage:
-        label: Image
-        style: table
+        label: One Image
         fields:
-          media:
-            label: Image
+          first:
             type: image
       images:
-        label: Slider
-        style: table
+        label: Multiple Images
         fields:
-          medias:
-            label: Images
+          first:
             type: images
       embed:
         label: Embed
-        snippet: sections/embed
         fields:
-          url:
+          first:
             label: URL
             type: url
-      map:
-        label: Map
-        entry: >
-              {{location}}
-        fields:
-          location:
-            label: Location
-            type: map
-            required: true
-            center:
-              lat: 48.856614
-              lng: 2.3522219000000177
-              zoom: 11
-            help: >
-              Move the pin or search for a location.

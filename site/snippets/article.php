@@ -6,6 +6,9 @@ if (isset($postTypes) && $post->type()->isNotEmpty()){
 }
 ?>
 <div class="blog-item<?php e(isset($lastPost) && $post->is($lastPost), ' last-post') ?>">
+	<?php if(!$withContent): ?>
+		<a href="<?= $post->url() ?>" class="link-overlay" data-target="post"></a>
+	<?php endif ?>
 	<div class="blog-item--header">
 		<div class="blog-item--infos">
 			<div class="blog-item--date">
@@ -26,9 +29,6 @@ if (isset($postTypes) && $post->type()->isNotEmpty()){
 			<?php endif ?>
 		</a>
 	</div>
-	<?php if(!$withContent): ?>
-	<a href="<?= $post->url() ?>" data-target="post">
-	<?php endif ?>
 	<?php if($post->featured()->isNotEmpty() && $featured = $post->featured()->toFile()): ?>
 		<div class="blog-item--featured">
 			<img src="<?= $featured->thumb('slider')->url() ?>" alt="<?= $post->title()->html() . c::get('alt') ?>" width="100%">
@@ -45,11 +45,12 @@ if (isset($postTypes) && $post->type()->isNotEmpty()){
 			</section>
 		<?php endif ?>
 		<?php foreach($post->sections()->toStructure() as $section): ?>
-		  <?php snippet('sections/' . $section->_fieldset(), array('data' => $section, 'page' => $post)) ?>
+			<?php if($section->_fieldset() == "set1"): ?>
+		  	<?php snippet('sections/bodytext', array('data' => $section, 'page' => $post)) ?>
+			<?php else: ?>
+		  	<?php snippet('sections/' . $section->_fieldset(), array('data' => $section, 'page' => $post)) ?>
+		  	<?php endif ?>
 		<?php endforeach ?>
 	</div>
-	<?php endif ?>
-	<?php if(!$withContent): ?>
-	</a>
 	<?php endif ?>
 </div>

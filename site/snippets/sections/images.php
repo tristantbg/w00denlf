@@ -1,4 +1,4 @@
-<?php foreach ($data->medias()->toStructure() as $key => $image): ?>
+<?php foreach ($data->get("first")->toStructure() as $key => $image): ?>
 	<?php 
 		$image = $image->toFile();
 		if ($image->caption()->isNotEmpty()) {

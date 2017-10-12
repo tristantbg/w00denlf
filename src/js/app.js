@@ -145,7 +145,6 @@ $(function() {
                         lastIndex = $slider.selectedIndex;
                         lastElement = $slider.selectedElement;
                         target = '#' + slide;
-                        $(".blog-posts--inner").empty();
                         $.ajax({
                             url: $(target).data("url"),
                             cache: true
@@ -153,6 +152,9 @@ $(function() {
                             var posts = $(response).find(".blog-posts--inner").html();
                             $(target + ' .blog-posts--inner').append(posts);
                             app.updateScrollers();
+                            setTimeout(function() {
+                              $(".blog-section:not("+target+") .blog-posts--inner").empty();
+                            }, 1000);
                         });
                     }
                 });
