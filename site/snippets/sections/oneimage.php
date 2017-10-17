@@ -1,5 +1,5 @@
+<?php if($image = $data->get("first")->toFile()): ?>
 <?php 
-	$image = $data->get("first")->toFile();
 	if ($image->caption()->isNotEmpty()) {
 		$caption = $image->caption()->escape();
 	} else {
@@ -14,3 +14,4 @@
 		<img src="<?= $image->thumb(c::get('thumbs-slider'))->url() ?>" alt="<?= $caption ?>" width="100%" />
 	</noscript>
 </section>
+<?php endif ?>

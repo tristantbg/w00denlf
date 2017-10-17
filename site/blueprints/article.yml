@@ -21,6 +21,7 @@ files:
         large: Large
       columns: 3
 fields:
+  reveal: reveal
   prevnext: prevnext
   mainInfos:
     label: Main infos

@@ -1,7 +1,7 @@
 <section class="post-content content--images">
 	<?php foreach ($data->medias()->toStructure() as $key => $image): ?>
+		<?php if($image = $image->toFile()): ?>
 		<?php 
-			$image = $image->toFile();
 			if ($image->caption()->isNotEmpty()) {
 				$caption = $image->caption()->escape();
 			} else {
@@ -15,5 +15,6 @@
 				<img class="lazyload" src="<?= $image->thumb(c::get('thumbs-slider'))->url() ?>" alt="<?= $caption ?>" height="100%" />
 			</noscript>
 		</div>
+		<?php endif ?>
 	<?php endforeach ?>
 </section>

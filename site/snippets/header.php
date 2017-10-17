@@ -103,26 +103,26 @@
 	<div id="menu-background"></div>
 	<div id="menu">
 		<ul id="switch" class="inline-nav">
-			<li<? e($ptemplate != 'types', ' class="active"') ?> data-switch="category">
+			<li<?php e($ptemplate != 'types', ' class="active"') ?> data-switch="category">
 				Catégorie
 			</li>
-			<li<? e($ptemplate == 'types', ' class="active"') ?> data-switch="type">
+			<li<?php e($ptemplate == 'types', ' class="active"') ?> data-switch="type">
 				Type
 			</li>
 		</ul>
-		<ul class="navigation nav-category<? e($ptemplate != 'types', ' active') ?>">
+		<ul class="navigation nav-category<?php e($ptemplate != 'types', ' active') ?>">
 			<?php foreach ($categories as $category): ?>
 				<li>
-					<a href="<?= $category->parent()->url() . '#' . $category->uid() ?>" <? e($ptemplate == 'blog', 'data-slider="'.$category->uid().'"') ?>>
+					<a href="<?= $category->parent()->url() . '#' . $category->uid() ?>" <?php e($ptemplate == 'blog', 'data-slider="'.$category->uid().'"') ?>>
 						<?= $category->title()->html() ?>
 					</a>
 				</li>
 			<?php endforeach ?>
 		</ul>
-		<ul class="navigation nav-type<? e($ptemplate == 'types', ' active') ?>">
+		<ul class="navigation nav-type<?php e($ptemplate == 'types', ' active') ?>">
 			<?php foreach ($types as $type): ?>
 				<li>
-					<a href="<?= $type->parent()->url() . '#' . $type->uid() ?>" <? e($ptemplate == 'types', 'data-slider="'.$type->uid().'"') ?>>
+					<a href="<?= $type->parent()->url() . '#' . $type->uid() ?>" <?php e($ptemplate == 'types', 'data-slider="'.$type->uid().'"') ?>>
 						<?= $type->title()->html() ?>
 					</a>
 				</li>
