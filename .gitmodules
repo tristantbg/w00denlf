@@ -25,3 +25,6 @@
 [submodule "site/plugins/kirby-styledmap"]
 	path = site/plugins/kirby-styledmap
 	url = https://github.com/bnomei/kirby-styledmap.git
+[submodule "site/plugins/kirby-reveal"]
+	path = site/plugins/kirby-reveal
+	url = https://github.com/jenstornell/kirby-reveal
