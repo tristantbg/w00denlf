@@ -4,7 +4,7 @@ return function ($site, $pages, $page) {
 	$types = $page->children()->visible();
 	$categories = $site->index()->filterBy('intendedTemplate', 'category')->visible();
 	$postsCollection = $site->homePage()->grandChildren()->visible()->sortBy('date', 'desc');
-	$lastPost = $postsCollection->first();
+	$lastPost = $types->filterBy('autoid', $postsCollection->first()->type()->value());
 	$menuPages = $site->index()->filterBy('intendedTemplate', 'default')->visible();
 
 	return array(

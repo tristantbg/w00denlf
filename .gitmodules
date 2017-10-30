@@ -28,3 +28,9 @@
 [submodule "site/plugins/kirby-reveal"]
 	path = site/plugins/kirby-reveal
 	url = https://github.com/jenstornell/kirby-reveal
+[submodule "site/plugins/copy-pages"]
+	path = site/plugins/copy-pages
+	url = https://github.com/medienbaecker/kirby-copy-pages.git
+[submodule "site/plugins/quickselect"]
+	path = site/plugins/quickselect
+	url = https://github.com/medienbaecker/kirby-quickselect.git

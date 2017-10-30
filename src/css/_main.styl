@@ -14,13 +14,14 @@ body
 	font-variant-ligatures no-common-ligatures
 	font-size $font
 	font-family 'NH', Helvetica Neue, Arial, sans-serif
+	overflow hidden
 	+below($md)
 		font-size $font_mobile
 
 h2
 	font-size ($font + 2)
 	+below($md)
-		font-size ($font_mobile + 2)
+		font-size $font_header_mobile
 
 p
 	margin-bottom 1em
@@ -36,7 +37,7 @@ p:last-child
 	background $secondary
 
 *
-	hideselect()
+	//hideselect()
 	box-sizing(border-box)
 
 a, a:hover, a:visited, a:focus
@@ -46,6 +47,8 @@ a, a:hover, a:visited, a:focus
 
 input, [type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color'], textarea, [type='text']:focus, [type='password']:focus, [type='date']:focus, [type='datetime']:focus, [type='datetime-local']:focus, [type='month']:focus, [type='week']:focus, [type='email']:focus, [type='number']:focus, [type='search']:focus, [type='tel']:focus, [type='time']:focus, [type='url']:focus, [type='color']:focus, textarea:focus
 	border 0
+	border-radius 0
+	padding 0
 	border-bottom .2rem solid
 	color $secondary
 	background transparent

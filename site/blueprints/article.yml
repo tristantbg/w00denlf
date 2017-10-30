@@ -3,23 +3,26 @@ files: true
 pages: false
 files:
   fields:
-    videolink:
-      label: Video Link
-      type: url
-      help: Youtube or Vimeo
-    videofile:
-      label: Video File
-      type: select
-      options: videos
-    contentsize:
-      label: Size
-      type: radio
-      default: large
-      options:
-        small: Small
-        medium: Medium
-        large: Large
-      columns: 3
+    caption:
+      label: Caption
+      type: textarea
+    # videolink:
+    #   label: Video Link
+    #   type: url
+    #   help: Youtube or Vimeo
+    # videofile:
+    #   label: Video File
+    #   type: select
+    #   options: videos
+    # contentsize:
+    #   label: Size
+    #   type: radio
+    #   default: large
+    #   options:
+    #     small: Small
+    #     medium: Medium
+    #     large: Large
+    #   columns: 3
 fields:
   reveal: reveal
   prevnext: prevnext
@@ -62,9 +65,22 @@ fields:
   text:
     label: Chapeau
     type: textarea
+    buttons:
+      - italic
+      - link
+      - page
+      - email
   maintext:
     label: Main text
     type: textarea
+    buttons:
+      - h1
+      - h2
+      - h3
+      - italic
+      - link
+      - page
+      - email
   contentHeadline:
     label: Content
     type: headline

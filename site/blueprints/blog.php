@@ -12,11 +12,13 @@ fields:
   pageindex:
     label: Posts
     type: index
-    options: visibleGrandchildren
+    options: grandchildren
     rows: 50
     sort: flip
     columns:
-      title: Title
+      title:
+        label: Title
+        width: 200
       uri: Slug
       uri:
         label: Type
@@ -25,3 +27,4 @@ fields:
         label: Date
         sort: desc
         snippet: index/modified
+        width: 100

@@ -12,7 +12,7 @@ module.exports = function(grunt) {
                 'node_modules/lazysizes/lazysizes.min.js', 
                 'node_modules/lazysizes/plugins/optimumx/ls.optimumx.min.js', 
                 //'node_modules/lazysizes/plugins/unveilhooks/ls.unveilhooks.min.js', 
-                //'node_modules/viewport-units-buggyfill/viewport-units-buggyfill.js',
+                'node_modules/viewport-units-buggyfill/viewport-units-buggyfill.js',
                 //'node_modules/smoothstate/jquery.smoothState.min.js'
                 ],
                 dest: 'assets/js/plugins.concat.js'
@@ -65,7 +65,7 @@ module.exports = function(grunt) {
         watch: {
             js: {
                 files: ['src/js/**/!(app.min|app.concat).js'],
-                tasks: ['javascript'],
+                tasks: ['concat:js', 'uglify:build'],
                 options: {
                     livereload: true,
                 }

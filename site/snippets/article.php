@@ -5,7 +5,7 @@ if (isset($postTypes) && $post->type()->isNotEmpty()){
 	$type = null;
 }
 ?>
-<div class="blog-item<?php e(isset($lastPost) && $post->is($lastPost), ' last-post') ?>">
+<div class="blog-item">
 	<?php if(!$withContent): ?>
 		<a href="<?= $post->url() ?>" class="link-overlay" data-target="post"></a>
 	<?php endif ?>
@@ -22,21 +22,23 @@ if (isset($postTypes) && $post->type()->isNotEmpty()){
 			<?php endif ?>
 			</div>
 		</div>
-		<a class="blog-item--title" href="<?= $post->url() ?>" data-target="post">
+		<div class="blog-item--title">
 			<h2><?= $post->title()->html() ?></h2>
 			<?php if($post->subtitle()->isNotEmpty()): ?>
 			<h3><?= $post->subtitle()->html() ?></h3>
 			<?php endif ?>
-		</a>
+		</div>
 	</div>
 	<?php if($post->featured()->isNotEmpty() && $featured = $post->featured()->toFile()): ?>
 		<div class="blog-item--featured">
-			<img src="<?= $featured->thumb('slider')->url() ?>" alt="<?= $post->title()->html() . c::get('alt') ?>" width="100%">
+			<img src="<?= $featured->thumb(c::get('thumbs-slider'))->url() ?>" alt="<?= $post->title()->html() . c::get('alt') ?>" width="100%">
 		</div>
 	<?php endif ?>
-	<div class="blog-item--chapeau">
-		<?= $post->text()->kt() ?>
-	</div>
+	<?php if ($post->text()->isNotEmpty()): ?>	
+		<div class="blog-item--chapeau">
+			<?= $post->text()->kt() ?>
+		</div>
+	<?php endif ?>
 	<?php if($withContent): ?>
 	<div class="blog-item--content">
 		<?php if($post->mainText()->isNotEmpty()): ?>
@@ -51,6 +53,9 @@ if (isset($postTypes) && $post->type()->isNotEmpty()){
 		  	<?php snippet('sections/' . $section->_fieldset(), array('data' => $section, 'page' => $post)) ?>
 		  	<?php endif ?>
 		<?php endforeach ?>
+		<?php snippet('sharebuttons', array('post' => $post)) ?>
 	</div>
+	<?php else: ?>
+		<h3 class="read-more">Lire la suite</h3>
 	<?php endif ?>
 </div>

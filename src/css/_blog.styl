@@ -26,9 +26,13 @@ section.blog-section
 		.blog-category--image
 			transition-delay 0.8s
 			transform "translateY(calc(%s - 100%)) translateZ(0)" % $padding
+			+below($md)
+				transition-delay 2.8s
 		.blog-posts
 			transition-delay 0.8s
 			transform translateZ(0)
+			+below($md)
+				transition-delay 2.8s
 
 .blog-category--image
 	transition transform 0.75s ease
@@ -65,14 +69,16 @@ section.blog-section
 		margin-top 'calc(%s + %s)' % ($font_header_mobile ($padding*3))
 	.blog-posts--inner
 		height auto
+		width 100%
 		display inline-block
 	img
 		display block
 
 .iScrollVerticalScrollbar
 	top 0 !important
+	right 0 !important
 	bottom 0 !important
-	width .4rem !important
+	width 0.2rem !important
 	.iScrollIndicator
 		border none !important
 		border-radius 0 !important
@@ -80,8 +86,11 @@ section.blog-section
 
 .blog-item
 	span(1)
-	margin-bottom ($font_header*2)
+	margin-bottom ($padding*2)
 	position relative
+	&.opened
+		h3.read-more
+			display none
 
 a.link-overlay
 	position absolute
@@ -94,25 +103,39 @@ a.link-overlay
 	span(1)
 	//padding 0 ($padding/2)
 
+h3
+	span(1)
+	margin-bottom $padding
+	padding 0.3em 0 0.2em
+	border-top 0.2rem solid
+	border-bottom 0.2rem solid
+
+.share-buttons
+	span(1)
+	margin-bottom 0
+	ul
+		display inline-flex
+	li:first-child
+		+below($md)
+			display none
+	li:not(:last-child)
+		margin-right $padding
+
 .blog-item--header
-	margin-bottom 1em
+	margin-bottom $padding
 	.blog-item--infos
 		span(1)
-		margin-bottom 1em
+		margin-bottom $padding
 		padding 0.3em 0 0.2em
 		border-top 0.2rem solid
 		border-bottom 0.2rem solid
 	.blog-item--title
 		span(1)
 		h3
-			margin-top .6em
-
-h3
-	span(1)
-	margin-bottom 1em
-	padding 0.3em 0 0.2em
-	border-top 0.2rem solid
-	border-bottom 0.2rem solid
+			padding 0
+			margin-top $padding
+			border 0
+			margin-bottom 0
 
 #search-header
 	margin-bottom 2em
@@ -120,18 +143,24 @@ h3
 .blog-item--type, .blog-item--date
 	column(1/2)
 
-.blog-item--chapeau, .blog-item--featured
+.blog-item--chapeau
 	span(1)
 	margin-bottom 1em
+
+.blog-item--featured
+	span(1)
+	margin-bottom ($padding*2)
 
 .blog-item--content
 	span(1)
 	section
 		span(1)
+	h2 + h3
+		margin-top .6em
 
 .post-content
 	span(1)
-	margin-bottom $padding
+	margin-bottom ($padding*2)
 	a
 		text-decoration underline
 		-webkit-text-decoration-skip ink

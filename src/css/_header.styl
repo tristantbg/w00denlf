@@ -11,6 +11,7 @@ header
 	+below($md)
 		width 'calc(100% - %s)' % ($padding*2)
 	#current-title
+		hideselect()
 		position relative
 		z-index 20
 		// overflow hidden
@@ -45,9 +46,10 @@ header
 				transform rotate(-45deg)
 				transform-origin top right
 	#section-title
+		hideselect()
 		position absolute
 		width 100%
-		top 0
+		top 0.07em
 		left 0
 	#site-title, #section-title
 		transition transform 1000ms ease
@@ -62,7 +64,7 @@ header
 		content ''
 		span(1/2.4)
 		position fixed
-		height 'calc(100vh - %s)' % ($padding*2)
+		height 'calc(100vh - %s)' % ($padding)
 		top $padding
 		left $padding
 		background $primary
@@ -103,6 +105,7 @@ header
 		margin-right 1em
 
 .navigation
+	hideselect()
 	display none
 	+above($md + 1)
 		font-size $font_header
