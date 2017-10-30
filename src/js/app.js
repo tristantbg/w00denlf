@@ -8,6 +8,8 @@ var width = $(window).width(),
     scrollers = [],
     iscrollers = [],
     lastTarget = false,
+    lastIndex,
+    lastElement,
     timeoutChangeTitle,
     $root = '/woodenlife';
 $(function() {
@@ -37,24 +39,21 @@ $(function() {
                     $el.addClass('active');
                     $('.navigation.nav-' + target).addClass('active');
                 });
-                $body.on('click', '.blog-item [data-target="post"]', function(event) {
+                $body.on('click', '.blog-item a[data-target="post"]', function(event) {
                     event.preventDefault();
-                    $el = $(this);
-                    href = $el.attr('href');
-                    $parent = $el.parents('.blog-item');
-                    if ($parent.find(".blog-item--content") > 0) {
-                        return;
-                    }
+                    var $el = $(this);
+                    var href = $el.attr('href');
+                    var $parent = $el.parents('.blog-item');
                     $parent.find('.read-more').text('Chargement…');
                     $.ajax({
                         url: href,
                         cache: true
                     }).done(function(response) {
                         $el.remove();
-                        var postContent = $(response).find(".blog-item--content").hide();
+                        var postContent = $(response).find(".blog-item--content").css('display', 'none');
                         $parent.append(postContent);
                         $parent.addClass('opened');
-                        postContent.slideDown(400, function() {
+                        postContent.slideDown(500, function() {
                             app.updateScrollers();
                         });
                     });
@@ -87,6 +86,8 @@ $(function() {
                         app.changeTitle($($slider.selectedElement).data("title"));
                     }, 3000);
                 }
+                lastIndex = $slider.selectedIndex;
+                lastElement = $slider.selectedElement;
             }
         },
         changeTitle: function(newTitle, instant) {
@@ -137,11 +138,11 @@ $(function() {
             });
             // $slider.flkty = $slider.data('flickity');
             if (typeof $slider != 'undefined') {
-                var lastIndex = $slider.selectedIndex;
-                var lastElement = $slider.selectedElement;
+                lastIndex = $slider.selectedIndex;
+                lastElement = $slider.selectedElement;
                 $slider.count = $slider.slides.length;
                 $slider.on('staticClick', function(event, pointer, cellElement, cellIndex) {
-                    if (typeof cellIndex == 'number') {
+                    if (typeof cellIndex == 'number' && lastIndex != cellIndex) {
                         $slider.selectCell(cellIndex);
                     }
                 });
@@ -168,6 +169,8 @@ $(function() {
                             app.updateScrollers();
                         }, 2000);
                     }, 3000);
+                    lastIndex = $slider.selectedIndex;
+                    lastElement = $slider.selectedElement;
                 }
                 $slider.on('select', function() {
                     slide = $($slider.selectedElement).attr('id');
@@ -256,40 +259,6 @@ $(function() {
                     }
                 }, 0);
             }
-        },
-        goIndex: function() {},
-        smoothState: function(container, target) {
-            var options = {
-                    anchors: '[data-target]',
-                    loadingClass: 'is-loading',
-                    //prefetch: true,
-                    //cacheLength: 2,
-                    onBefore: function($currentTarget, $container) {
-                        //$container.addClass('is-loading');
-                        lastTarget = target;
-                        target = $currentTarget.data('target');
-                    },
-                    onStart: {
-                        duration: 250, // Duration of our animation
-                        render: function($container) {
-                            // Add your CSS animation reversing class
-                            $container.addClass('is-exiting');
-                        }
-                    },
-                    onReady: {
-                        duration: 0,
-                        render: function($container, $newContent) {
-                            // Remove your CSS animation reversing class
-                            //$container.removeClass('is-loading');
-                            // Inject the new content
-                            target.html($newContent);
-                        }
-                    },
-                    onAfter: function($container, $newContent) {
-                        $container.removeClass('loading');
-                    }
-                },
-                smoothState = $(container).smoothState(options).data('smoothState');
         }
     };
     app.init();
