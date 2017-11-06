@@ -14,9 +14,9 @@ $bot = _bot_detected();
 ?>
 
 <?php if(!$bot && !r::ajax()): ?>
-<!-- <script>
+<script>
 	window.location = window.location.href.replace("types/", "types/#");
-</script> -->
+</script>
 <?php endif ?>
 
 <div id="blog-categories" class="sections-slider">
