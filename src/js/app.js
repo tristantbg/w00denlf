@@ -11,7 +11,7 @@ var width = $(window).width(),
     lastIndex,
     lastElement,
     timeoutChangeTitle,
-    $root = '/woodenlife';
+    $root = '/';
 $(function() {
     var app = {
         init: function() {
@@ -184,7 +184,7 @@ $(function() {
                         lastIndex = $slider.selectedIndex;
                         lastElement = $slider.selectedElement;
                         target = '#' + slide;
-                        app.loadPosts(target);
+                        if(manySections) app.loadPosts(target);
                     }
                 });
                 $slider.on('settle', function() {
@@ -195,7 +195,7 @@ $(function() {
                 app.loadIScrollers();
                 // Load first posts in ajax                
                 target = '#' + $($slider.selectedElement).attr('id');
-                app.loadPosts(target);
+                if(manySections) app.loadPosts(target);
                 $("#blog-categories").addClass('loaded');
                 //$slider.first('.slide').find('.lazyimg:not(".lazyloaded")').addClass('lazyload');
                 // $slider.on('select.flickity', function() {
