@@ -38,13 +38,19 @@
 	<?php endif ?>
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="<?= html($page->url()) ?>" />
-	<?php if($page->content()->name() == "project"): ?>
+	<?php if($page->intendedTemplate() == "article"): ?>
 		<?php if (!$page->featured()->empty()): ?>
-			<meta property="og:image" content="<?= resizeOnDemand($page->image($page->featured()), 1200) ?>"/>
+			<?php $ogimage = $page->featured()->toFile()->width(1200) ?>
+			<meta property="og:image" content="<?= $ogimage->url() ?>"/>
+			<meta property="og:image:width" content="<?= $ogimage->width() ?>"/>
+			<meta property="og:image:height" content="<?= $ogimage->height() ?>"/>
 		<?php endif ?>
 	<?php else: ?>
 		<?php if(!$site->ogimage()->empty()): ?>
-			<meta property="og:image" content="<?= $site->ogimage()->toFile()->width(1200)->url() ?>"/>
+			<?php $ogimage = $site->ogimage()->toFile()->width(1200) ?>
+			<meta property="og:image" content="<?= $ogimage->url() ?>"/>
+			<meta property="og:image:width" content="<?= $ogimage->width() ?>"/>
+			<meta property="og:image:height" content="<?= $ogimage->height() ?>"/>
 		<?php endif ?>
 	<?php endif ?>
 
