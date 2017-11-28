@@ -8,7 +8,7 @@
 				<a href="<?= $post->parent()->url() ?>"><?= $post->parent()->title()->html() ?></a>
 			</div>
 		</div>
-		<a class="blog-item--title" href="<?= $post->url() ?>" data-target="post">
+		<a class="blog-item--title" href="<?= $post->url() ?>">
 			<h2><?= $post->title()->html() ?></h2>
 			<?php if($post->subtitle()->isNotEmpty()): ?>
 			<h3><?= $post->subtitle()->html() ?></h3>

@@ -226,6 +226,7 @@ $(function() {
                     iscrollers[i] = new IScroll(scrollers[i], {
                         mouseWheel: true,
                         scrollbars: true,
+                        interactiveScrollbars: true,
                         preventDefaultException: {
                             tagName: /^(A|INPUT|TEXTAREA|BUTTON|SELECT)$/
                         }

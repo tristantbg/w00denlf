@@ -14,5 +14,8 @@
 		<noscript>
 			<img src="<?= $image->thumb(c::get('thumbs-slider'))->url() ?>" alt="<?= $caption ?>" width="100%" />
 		</noscript>
+		<?php if ($image->caption()->isNotEmpty()): ?>
+			<div class="caption"><?= $image->caption()->kt() ?></div>
+		<?php endif ?>
 	</section>
 <?php endforeach ?>
