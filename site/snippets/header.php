@@ -15,6 +15,7 @@
 	<?php endif ?>
 	<?php if($page->isHomepage()): ?>
 		<meta name="description" content="<?= $site->description()->html() ?>">
+		<meta property="og:description" content="<?= $site->description()->html() ?>" />
 	<?php else: ?>
 		<meta name="DC.Title" content="<?= $page->title()->html() ?>" />
 		<?php if(!$page->text()->empty()): ?>

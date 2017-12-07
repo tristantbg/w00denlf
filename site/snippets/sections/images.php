@@ -1,6 +1,6 @@
 <?php foreach ($data->get("first")->toStructure() as $key => $image): ?>
+	<?php if ($image = $image->toFile()): ?>
 	<?php 
-		$image = $image->toFile();
 		if ($image->caption()->isNotEmpty()) {
 			$caption = $image->caption()->escape();
 		} else {
@@ -18,4 +18,5 @@
 			<div class="caption"><?= $image->caption()->kt() ?></div>
 		<?php endif ?>
 	</section>
+	<?php endif ?>
 <?php endforeach ?>
