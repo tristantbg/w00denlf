@@ -1,5 +1,4 @@
 <?php if($image = $data->get("first")->toFile()): ?>
-	<?php if ($image = $image->toFile()): ?>	
 	<?php 
 		if ($image->caption()->isNotEmpty()) {
 			$caption = $image->caption()->escape();
@@ -18,5 +17,4 @@
 			<div class="caption"><?= $image->caption()->kt() ?></div>
 		<?php endif ?>
 	</section>
-	<?php endif ?>
 <?php endif ?>
