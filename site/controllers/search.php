@@ -5,7 +5,7 @@ return function ($site, $pages, $page) {
 	$categories = $site->index()->filterBy('intendedTemplate', 'category')->visible();
 	$menuPages = $site->index()->filterBy('intendedTemplate', 'default')->visible();
 	$query   = get('q');
-  	$results = $site->index()->visible()->search($query, 'title|text|chapeau|sections');
+  	$results = $site->index()->visible()->filterBy('intendedTemplate', 'in', ['default', 'article'])->search($query, 'title|text|maintext|chapeau|sections');
 
 	return array(
 	'types' => $types,
